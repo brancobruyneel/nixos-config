@@ -10,9 +10,58 @@
 
   config = lib.mkIf config.custom.zsh.enable {
     users.users.${config.custom.user}.shell = pkgs.zsh;
+		programs.zsh.enable = true;
 
-    programs.zsh = {
-      enable = true;
+    home-manager.users.${config.custom.user} = { pkgs, ... }: {
+      programs.zsh = {
+				enable = true;
+        shellAliases = {
+          # nix
+          nrb = "sudo nixos-rbuild switch --flake .";
+
+          v = "nvim";
+
+          cat = "bat";
+
+          sd = "sudo shutdown now";
+          rb = "sudo reboot now";
+
+          ls = "ls --color=auto";
+          ll = "ls -lh";
+          la = "ls -a";
+          lla = "ls -lah";
+
+          grep = "grep --color=auto";
+          diff = "diff --color=auto";
+
+          ".." = "cd ..";
+          "..." = "cd ../..";
+          "...." = "cd ../../..";
+
+          tf = "terraform";
+
+          # glab
+          glrv = "glab repo view -w";
+          glcr = "glab ci run | tee /dev/tty | grep -o 'https://[^ ]*' | xargs open";
+
+          # tmux
+          t = "tmux new -s";
+          ta = "tmux at";
+          tk = "pkill tmux";
+          tls = "tmux ls";
+          tsd = "tmux-sync-dirs";
+
+          # docker
+          dps = "docker ps --format \"table {{ .ID }}\t{{.Names}}\t{{.Status}}\t{{.Ports}}\"";
+        };
+
+        history.size  =  1000;
+        history.path  =  "$HOME/.zsh_history";
+      };
+
+      programs.starship = {
+        enable = true;
+      };
     };
   };
 }

@@ -50,6 +50,7 @@ in
       zip
       dnsutils
       nmap
+      fzf
       neovim
     ] ++ cfg.extraSystemPackages;
 
@@ -70,6 +71,13 @@ in
     };
 
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
+      # home.file = {
+      #   ".local/bin" = {
+      #     source = ../scripts/;
+      #     recursive = true;
+      #   };
+      # };
+
       home.stateVersion = cfg.stateVersion;
       home.packages = with pkgs; [
         btop
