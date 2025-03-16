@@ -57,13 +57,7 @@
     graphical.hyprland.enable = true;
 
     extraHomePackages = with pkgs; [
-      neovim
       discord
-      dunst
-      wofi
-      waybar
-      libnotify
-      networkmanagerapplet
       mpv
       ffmpeg-full
       signal-desktop

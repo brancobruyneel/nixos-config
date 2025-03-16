@@ -20,6 +20,8 @@ in
         adwaita-icon-theme
         adwaita-qt
         gnome-bluetooth
+        libnotify
+        networkmanagerapplet
       ];
 
       wayland.windowManager.hyprland = {
@@ -39,7 +41,6 @@ in
       };
 
       programs.wofi = import ./wofi.nix;
-
     };
 
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
