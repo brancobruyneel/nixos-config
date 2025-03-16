@@ -10,11 +10,11 @@
 
   config = lib.mkIf config.custom.zsh.enable {
     users.users.${config.custom.user}.shell = pkgs.zsh;
-		programs.zsh.enable = true;
+    programs.zsh.enable = true;
 
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
       programs.zsh = {
-				enable = true;
+        enable = true;
         shellAliases = {
           # nix
           nrb = "sudo nixos-rbuild switch --flake .";
@@ -55,25 +55,25 @@
           dps = "docker ps --format \"table {{ .ID }}\t{{.Names}}\t{{.Status}}\t{{.Ports}}\"";
         };
 
-        history.size  =  1000;
-        history.path  =  "$HOME/.zsh_history";
+        history.size = 1000;
+        history.path = "$HOME/.zsh_history";
 
-				initExtraFirst = ''
-					# vi mode
-					bindkey -v
-					bindkey '^R' history-incremental-search-backward
-					bindkey -v '^?' backward-delete-char
+        initExtraFirst = ''
+          					# vi mode
+          					bindkey -v
+          					bindkey '^R' history-incremental-search-backward
+          					bindkey -v '^?' backward-delete-char
 
-					# tmux
-					bindkey -s '^f' 'tmux-sessionizer\n'
-					bindkey -s '^s' 'tmux-switch-session\n'
-				'';
+          					# tmux
+          					bindkey -s '^f' 'tmux-sessionizer\n'
+          					bindkey -s '^s' 'tmux-switch-session\n'
+          				'';
       };
 
-			programs.fzf = {
-				enable = true;
-				enableZshIntegration = true;
-			};
+      programs.fzf = {
+        enable = true;
+        enableZshIntegration = true;
+      };
 
       programs.starship = {
         enable = true;
