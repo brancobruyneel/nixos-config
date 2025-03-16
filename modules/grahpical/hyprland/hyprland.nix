@@ -1,14 +1,14 @@
 {
-	monitor = [
-		"DP-2, 3840x2160@60.00Hz, 0x0, 1.5"
-		"DP-3, 3840x2160@60.00Hz, auto-right, 1.5, transform, 3"
-	];
+  monitor = [
+    "DP-2, 3840x2160@60.00Hz, 0x0, 1.5"
+    "DP-3, 3840x2160@60.00Hz, auto-right, 1.5, transform, 3"
+  ];
 
   env = [
     "XCURSOR_SIZE,24"
     "WLR_NO_HARDWARE_CURSORS,1"
-		"LIBVA_DRIVER_NAME,nvidia"
-		"__GLX_VENDOR_LIBRARY_NAME,nvidia"
+    "LIBVA_DRIVER_NAME,nvidia"
+    "__GLX_VENDOR_LIBRARY_NAME,nvidia"
   ];
 
   input = {
@@ -27,32 +27,32 @@
   };
 
   dwindle = {
-      pseudotile = true;
-      preserve_split = true;
+    pseudotile = true;
+    preserve_split = true;
   };
 
   decoration = {
-      rounding = 5;
-			rounding_power = 2;
+    rounding = 5;
+    rounding_power = 2;
   };
 
   animations = {
-      enabled = true;
+    enabled = true;
 
-      bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+    bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
 
-      animation = [
-        "windows, 1, 7, myBezier"
-        "windowsOut, 1, 7, default, popin 80%"
-        "border, 1, 10, default"
-        "borderangle, 1, 8, default"
-        "fade, 1, 7, default"
-        "workspaces, 1, 6, default"
-      ];
+    animation = [
+      "windows, 1, 7, myBezier"
+      "windowsOut, 1, 7, default, popin 80%"
+      "border, 1, 10, default"
+      "borderangle, 1, 8, default"
+      "fade, 1, 7, default"
+      "workspaces, 1, 6, default"
+    ];
   };
 
   gestures = {
-      workspace_swipe = false;
+    workspace_swipe = false;
   };
 
   windowrulev2 = [
@@ -60,9 +60,9 @@
     "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
   ];
 
-	"$mod" = "SUPER";
-	"$menu" = "wofi --show drun";
-	bind = [
+  "$mod" = "SUPER";
+  "$menu" = "wofi --show drun";
+  bind = [
     "$mod, Return, exec, ghostty"
     "$mod, W, exec, firefox"
     "$mod, C, killactive,"
@@ -73,9 +73,9 @@
 
     # Move focus with mainMod + arrow keys
     "$mod, H, movefocus, l"
-		"$mod, L, movefocus, r"
-		"$mod, K, movefocus, u"
-		"$mod, J, movefocus, d"
+    "$mod, L, movefocus, r"
+    "$mod, K, movefocus, u"
+    "$mod, J, movefocus, d"
 
     # Switch workspaces with mainMod + [0-9]
     "$mod, 1, moveworkspacetomonitor, 1 current"
