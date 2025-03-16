@@ -8,6 +8,8 @@ in
     ./git.nix
     ./ghostty.nix
     ./tmux.nix
+    ./zsh.nix
+    ./firefox.nix
   ];
 
   options.custom = {

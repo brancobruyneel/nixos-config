@@ -9,7 +9,10 @@
   };
 
   config = lib.mkIf config.custom.zsh.enable {
+    users.users.${config.custom.user}.shell = pkgs.zsh;
+
     programs.zsh = {
       enable = true;
     };
-  }
+  };
+}

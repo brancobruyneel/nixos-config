@@ -52,8 +52,11 @@
   custom = {
     stateVersion = "24.11";
     git.enable = true;
+    zsh.enable = true;
     tmux.enable = true;
     ghostty.enable = true;
+    firefox.enable = true;
+
     graphical.hyprland.enable = true;
 
     extraHomePackages = with pkgs; [
