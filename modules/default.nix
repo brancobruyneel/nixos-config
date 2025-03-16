@@ -50,7 +50,6 @@ in
       zip
       dnsutils
       nmap
-      fzf
       neovim
     ] ++ cfg.extraSystemPackages;
 

@@ -57,7 +57,23 @@
 
         history.size  =  1000;
         history.path  =  "$HOME/.zsh_history";
+
+				initExtraFirst = ''
+					# vi mode
+					bindkey -v
+					bindkey '^R' history-incremental-search-backward
+					bindkey -v '^?' backward-delete-char
+
+					# tmux
+					bindkey -s '^f' 'tmux-sessionizer\n'
+					bindkey -s '^s' 'tmux-switch-session\n'
+				'';
       };
+
+			programs.fzf = {
+				enable = true;
+				enableZshIntegration = true;
+			};
 
       programs.starship = {
         enable = true;
