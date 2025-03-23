@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-dirs=$(find ~/dev ~/.config ~/.local/src -mindepth 1 -maxdepth 1 -type d)
+dirs=$(find ~/dev ~/.config -mindepth 1 -maxdepth 1 -type d)
 
 # Inside tmux
 if [[ -n $TMUX ]]; then
