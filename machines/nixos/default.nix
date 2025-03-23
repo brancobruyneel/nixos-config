@@ -41,6 +41,7 @@
     jack.enable = true;
   };
 
+  services.tailscale.enable = true;
   networking.networkmanager.enable = true;
 
   services.xserver.xkb = {
