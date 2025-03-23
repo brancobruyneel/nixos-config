@@ -25,16 +25,19 @@ in
     };
 
     extraSystemPackages = lib.mkOption {
+      type = lib.types.listOf lib.types.package;
       default = [ ];
       example = [ pkgs.unzip ];
     };
 
     extraHomePackages = lib.mkOption {
+      type = lib.types.listOf lib.types.package;
       default = [ ];
       example = [ pkgs.spotify-tui ];
     };
 
     stateVersion = lib.mkOption {
+      type = lib.types.str;
       example = "24.11";
     };
 
@@ -44,6 +47,8 @@ in
   };
 
   config = {
+    environment.localBinInPath = true;
+
     environment.systemPackages = with pkgs; [
       jq
       btop
@@ -72,18 +77,42 @@ in
     };
 
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
-      # home.file = {
-      #   ".local/bin" = {
-      #     source = ../scripts/;
-      #     recursive = true;
-      #   };
-      # };
-
       home.stateVersion = cfg.stateVersion;
       home.packages = with pkgs; [
         btop
         bat
+        xdg-user-dirs
       ] ++ cfg.extraHomePackages;
+
+      xdg = {
+        enable = true;
+        userDirs = {
+          createDirectories = true;
+          desktop = "/home/${cfg.user}/desktop";
+          documents = "/home/${cfg.user}/documents";
+          download = "/home/${cfg.user}/downloads";
+          music = "/home/${cfg.user}/music";
+          pictures = "/home/${cfg.user}/pictures";
+          publicShare = "/home/${cfg.user}/desktop";
+          videos = "/home/${cfg.user}/videos";
+        };
+        mimeApps = {
+          enable = true;
+          defaultApplications = {
+            "text/html" = [ "firefox.desktop" ];
+            "x-scheme-handler/about" = [ "firefox.desktop" ];
+            "x-scheme-handler/http" = [ "firefox.desktop" ];
+            "x-scheme-handler/https" = [ "firefox.desktop" ];
+            "x-scheme-handler/unknown" = [ "firefox.desktop" ];
+            "x-scheme-handler/msteams" = [ "teams.desktop" ];
+          };
+        };
+      };
+      programs.direnv = {
+        enable = true;
+        enableZshIntegration = true;
+        nix-direnv.enable = true;
+      };
     };
 
     nix = {
