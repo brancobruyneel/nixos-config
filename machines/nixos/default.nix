@@ -63,6 +63,7 @@
     graphical.hyprland.enable = true;
 
     extraHomePackages = with pkgs; [
+      spotify
       discord
       mpv
       ffmpeg-full
