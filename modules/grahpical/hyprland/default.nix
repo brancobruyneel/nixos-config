@@ -12,6 +12,11 @@ in
   };
 
   config = mkIf cfg.enable {
+    programs.hyprland = {
+      enable = true;
+      withUWSM = true;
+    };
+
     home-manager.users.${config.custom.user} = { pkgs, ... }: {
       home.packages = with pkgs; [
         pamixer
@@ -26,7 +31,6 @@ in
 
       wayland.windowManager.hyprland = {
         enable = true;
-        systemd.enable = true;
         settings = import ./hyprland.nix;
       };
 
@@ -47,11 +51,6 @@ in
 
     xdg.portal = {
       enable = true;
-      config.preferred = {
-        default = "gtk";
-        "org.freedesktop.impl.portal.Screencast" = "hyprland";
-      };
-      extraPortals = with pkgs; [ xdg-desktop-portal-gtk xdg-desktop-portal-hyprland ];
     };
 
     fonts = {

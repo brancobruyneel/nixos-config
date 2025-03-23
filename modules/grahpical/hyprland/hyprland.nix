@@ -1,7 +1,7 @@
 {
   monitor = [
-    "DP-2, 3840x2160@60.00Hz, 0x0, 1.5, bitdepth, 10"
-    "DP-3, 3840x2160@60.00Hz, auto-right, 1.5, transform, 3, bitdepth,10"
+    "DP-3, 3840x2160@60.00Hz, 0x0, 1.5, bitdepth, 10"
+    "DP-2, 3840x2160@60.00Hz, auto-right, 1.5, transform, 3, bitdepth,10"
   ];
 
   env = [
@@ -83,7 +83,7 @@
     "$mod, W, exec, firefox"
     "$mod, C, killactive,"
     "$mod, Q, exit,"
-    "$mod, E, exec, dolphin"
+    "$mod, E, exec, ghostty -e yazi"
     "$mod, V, togglefloating,"
     "$mod, P, exec, $menu"
 
