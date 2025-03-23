@@ -5,15 +5,17 @@ in
 {
   imports = [
     ./grahpical/hyprland
+    ./tmux
     ./git.nix
     ./ghostty.nix
-    ./tmux.nix
     ./zsh.nix
     ./firefox.nix
+    ./yazi.nix
   ];
 
   options.custom = {
     user = lib.mkOption {
+      type = lib.types.str;
       example = "branco";
       default = "branco";
     };

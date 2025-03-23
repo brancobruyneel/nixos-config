@@ -56,6 +56,7 @@
     tmux.enable = true;
     ghostty.enable = true;
     firefox.enable = true;
+    yazi.enable = true;
 
     graphical.hyprland.enable = true;
 

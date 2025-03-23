@@ -38,6 +38,8 @@
           "..." = "cd ../..";
           "...." = "cd ../../..";
 
+          f = "yy"; # yazi
+
           tf = "terraform";
 
           # glab
