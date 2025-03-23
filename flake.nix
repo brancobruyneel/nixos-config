@@ -8,9 +8,19 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
+    agenix = {
+      url = "github:ryantm/agenix/main";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, agenix, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -26,10 +36,14 @@
               home-manager.useUserPackages = true;
             })
 
+            # Secrets management
+            agenix.nixosModules.default
+
+            (./machines/nixos)
+
             # load custom modules
             (./modules)
 
-            (./machines/nixos)
           ];
         };
       };
