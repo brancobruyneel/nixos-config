@@ -17,7 +17,7 @@
         enable = true;
         shellAliases = {
           # nix
-          nrb = "sudo nixos-rbuild switch --flake .";
+          nrb = "sudo nixos-rebuild switch --flake .";
 
           v = "nvim";
 
