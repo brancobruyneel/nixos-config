@@ -16,6 +16,7 @@
       programs.git = {
         enable = true;
         userName = "brancobruyneel";
+        userEmail = "43569324+brancobruyneel@users.noreply.github.com";
         extraConfig = {
           init.defaultBranch = "main";
           branch.autosetuprebase = "always";
