@@ -109,11 +109,6 @@ in {
           };
         };
       };
-      programs.direnv = {
-        enable = true;
-        enableZshIntegration = true;
-        nix-direnv.enable = true;
-      };
     };
 
     nix = {
@@ -127,10 +122,6 @@ in {
         automatic = true;
         dates = ["daily"];
       };
-    };
-    programs.direnv = {
-      enable = true;
-      nix-direnv.enable = true;
     };
 
     nixpkgs.config.allowUnfree = true;
