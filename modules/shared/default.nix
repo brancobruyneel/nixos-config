@@ -76,6 +76,12 @@ in {
         "${config.custom.user}" = {...}: {
           home.stateVersion = cfg.homeStateVersion;
           home.packages = cfg.extraHomePackages;
+
+          programs.direnv = {
+            enable = true;
+            enableZshIntegration = true;
+            nix-direnv.enable = true;
+          };
         };
       };
     };
