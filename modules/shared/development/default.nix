@@ -1,0 +1,32 @@
+{
+  config,
+  lib,
+  ...
+}: {
+  imports = [
+    ./zsh.nix
+    ./git.nix
+    ./yazi.nix
+    ./tmux
+    ./ghostty.nix
+  ];
+
+  options.custom.development = {
+    enable = lib.mkOption {
+      default = true;
+      example = false;
+    };
+  };
+
+  config = let
+    enabled = lib.mkDefault true;
+  in {
+    custom = {
+      zsh.enable = enabled;
+      git.enable = enabled;
+      yazi.enable = enabled;
+      tmux.enable = enabled;
+      ghostty.enable = enabled;
+    };
+  };
+}
