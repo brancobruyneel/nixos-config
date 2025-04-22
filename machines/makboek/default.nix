@@ -21,6 +21,11 @@
       keycastr
       discord
       zoom-us
+      go
+      glab
+      gopls
+      golangci-lint
+      delve
     ];
   };
 
