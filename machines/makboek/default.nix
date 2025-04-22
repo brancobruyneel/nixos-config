@@ -83,5 +83,6 @@
         InitialKeyRepeat = 15;
       };
     };
+    startup.chime = false;
   };
 }
