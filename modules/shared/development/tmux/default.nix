@@ -15,6 +15,7 @@
     environment.systemPackages = [
       (pkgs.writeShellScriptBin "tmux-sessionizer" (builtins.readFile ./tmux-sessionizer.sh))
       (pkgs.writeShellScriptBin "tmux-switch-session" (builtins.readFile ./tmux-switch-session.sh))
+      (pkgs.writeShellScriptBin "tmux-sync" (builtins.readFile ./tmux-sync.sh))
     ];
 
     programs.tmux.enable = true;
