@@ -29,6 +29,7 @@
       docker
       docker-compose
       colima
+      fioctl
     ];
   };
 
