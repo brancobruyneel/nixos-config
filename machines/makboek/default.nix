@@ -26,6 +26,9 @@
       gopls
       golangci-lint
       delve
+      docker
+      docker-compose
+      colima
     ];
   };
 
