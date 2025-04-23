@@ -25,6 +25,7 @@
       glab
       gopls
       golangci-lint
+      gotestsum
       delve
       docker
       docker-compose
