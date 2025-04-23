@@ -61,8 +61,8 @@
         history.size = 1000;
         history.path = "$HOME/.zsh_history";
 
-        initExtraFirst = ''
-          # vi mode
+				initContent = lib.mkBefore ''
+					# vi mode
           bindkey -v
           bindkey '^R' history-incremental-search-backward
           bindkey -v '^?' backward-delete-char
