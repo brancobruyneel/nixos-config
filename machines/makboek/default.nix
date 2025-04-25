@@ -35,6 +35,7 @@
   };
 
   security.pam.services.sudo_local.touchIdAuth = true;
+  security.pam.services.sudo_local.reattach = true;
 
   services = {
     openssh.enable = true;
@@ -79,6 +80,8 @@
 
       loginwindow.GuestEnabled = false;
       menuExtraClock.ShowSeconds = true;
+
+      WindowManager.EnableStandardClickToShowDesktop = false;
 
       trackpad = {
         Clicking = true;
