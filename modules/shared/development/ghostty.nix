@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{ config, lib, pkgs, ... }: {
   options.custom.ghostty = {
     enable = lib.mkOption {
       default = false;
@@ -12,17 +7,21 @@
   };
 
   config = lib.mkIf config.custom.ghostty.enable {
-    home-manager.users.${config.custom.user} = {pkgs, ...}: let
-      ghostty-mock = pkgs.writeShellScriptBin "ghostty-mock" ''
-        true
-      '';
+    home-manager.users.${config.custom.user} = { pkgs, ... }: let
+      ghosttyPkg = if pkgs.stdenv.isDarwin then
+        pkgs.writeShellScriptBin "ghostty-mock" ''
+          true
+        ''
+      else
+        pkgs.ghostty;
+    fontSize = if pkgs.stdenv.isDarwin then "16" else "14";
     in {
       programs.ghostty = {
         enable = true;
-        package = ghostty-mock; # Mock package since managed externally
+        package = ghosttyPkg;
         settings = {
           "font-family" = "JetBrainsMono Nerd Font";
-          "font-size" = "16";
+          "font-size" = fontSize;
           "window-decoration" = "false";
           "theme" = "OneHalfDark";
           "font-thicken" = "true";

@@ -30,7 +30,13 @@ in {
         gnome-bluetooth
         libnotify
         networkmanagerapplet
+        hyprpaper
       ];
+
+      services.gnome-keyring = {
+        enable = true;
+        components = [ "secrets" ];
+      };
 
       wayland.windowManager.hyprland = {
         enable = true;
@@ -47,6 +53,19 @@ in {
         enable = true;
       };
 
+      services.hyprpaper = {
+        enable = true;
+        settings = {
+          preload = [
+            "~/pictures/wallpapers/simonstalenhag/svema/svema_12_big.jpg"
+          ];
+          wallpaper = [
+            "DP-2,~/pictures/wallpapers/simonstalenhag/svema/svema_12_big.jpg"
+            "DP-3,~/pictures/wallpapers/simonstalenhag/svema/svema_12_big.jpg"
+          ];
+        };
+      };
+
       programs.wofi = import ./wofi.nix;
 
       programs.zsh.profileExtra = ''
@@ -56,7 +75,9 @@ in {
       '';
     };
 
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+    environment.sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+    };
 
     fonts = {
       fontDir.enable = true;

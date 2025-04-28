@@ -60,6 +60,7 @@
     development.enable = true;
 
     graphical.hyprland.enable = true;
+    firefox.enable = true;
 
     extraHomePackages = with pkgs; [
       spotify
