@@ -25,12 +25,12 @@
           push.autoSetupRemote = true;
           core.autocrlf = "input";
         };
-        includes = [
-          {
-            condition = "gitdir:~/work/**";
-            path = config.age.secrets."git/work".path;
-          }
-        ];
+        # includes = [
+        #   {
+        #     condition = "gitdir:~/work/**";
+        #     path = config.age.secrets."git/work".path;
+        #   }
+        # ];
         ignores = [
           ".DS_Store"
           ".data"
@@ -42,12 +42,12 @@
     };
   in
     lib.mkIf config.custom.git.enable {
-      age.secrets = {
-        "git/work" = {
-          file = ../../../secrets/git/work.age;
-          owner = config.custom.user;
-        };
-      };
+      # age.secrets = {
+      #   "git/work" = {
+      #     file = ../../../secrets/git/work.age;
+      #     owner = config.custom.user;
+      #   };
+      # };
       home-manager.users.${config.custom.user} = {...}: base;
     };
 }

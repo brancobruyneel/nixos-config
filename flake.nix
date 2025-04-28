@@ -51,9 +51,16 @@
         system = nixosSystem;
         specialArgs = {inherit inputs;};
         modules = [
+          {
+            nixpkgs.overlays = [
+              agenix.overlays.default
+              nur.overlays.default
+            ];
+          }
           home-manager.nixosModules.home-manager
           agenix.nixosModules.default
           ./machines/nixos
+          ./modules/nixos
           ./modules/shared
         ];
       };

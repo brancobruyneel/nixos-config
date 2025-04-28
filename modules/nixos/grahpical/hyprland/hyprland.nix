@@ -11,6 +11,8 @@
     "__GLX_VENDOR_LIBRARY_NAME,nvidia"
   ];
 
+  misc.force_default_wallpaper = 0;
+
   input = {
     kb_layout = "us";
     follow_mouse = 1;
