@@ -14,7 +14,7 @@
         ''
       else
         pkgs.ghostty;
-    fontSize = if pkgs.stdenv.isDarwin then "16" else "14";
+    fontSize = if pkgs.stdenv.isDarwin then "16" else "12";
     in {
       programs.ghostty = {
         enable = true;

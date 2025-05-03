@@ -8,6 +8,7 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelParams = [ "module_blacklist=amdgpu" ];
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
@@ -17,22 +18,25 @@
   environment.variables = {
     LIBVA_DRIVER_NAME = "nvidia";
     VDPAU_DRIVER = "nvidia";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    GBM_BACKEND = "nvidia-drm";
   };
 
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      nvidia-vaapi-driver
-    ];
-  };
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = true;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
+  hardware = {
+    graphics = {
+      enable = true;
+      extraPackages = with pkgs; [
+        nvidia-vaapi-driver
+      ];
+    };
+    nvidia = {
+      modesetting.enable = true;
+      powerManagement.enable = false;
+      powerManagement.finegrained = false;
+      open = true;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
+    };
   };
 
   security.rtkit.enable = true;
@@ -61,14 +65,18 @@
 
     graphical.hyprland.enable = true;
     firefox.enable = true;
+<<<<<<< Updated upstream
     neovim.enable = true;
+=======
+    discord.enable = true;
+>>>>>>> Stashed changes
 
     extraHomePackages = with pkgs; [
-      spotify
-      discord
       mpv
       ffmpeg-full
       signal-desktop
+      docker
+      docker-compose
     ];
   };
 }

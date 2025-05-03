@@ -1,14 +1,12 @@
 {
   monitor = [
-    "DP-2, 3840x2160@60.00Hz, 0x0, 1.5, bitdepth, 10"
-    "DP-3, 3840x2160@60.00Hz, auto-right, 1.5, transform, 3, bitdepth,10"
+    "DP-1, 3840x2160@60.00Hz, 0x0, 1.5"
+    "DP-2, 3840x2160@60.00Hz, auto-right, 1.5, transform, 3"
   ];
 
   env = [
     "XCURSOR_SIZE,24"
     "WLR_NO_HARDWARE_CURSORS,1"
-    "LIBVA_DRIVER_NAME,nvidia"
-    "__GLX_VENDOR_LIBRARY_NAME,nvidia"
   ];
 
   misc.force_default_wallpaper = 0;
@@ -16,6 +14,8 @@
   input = {
     kb_layout = "us";
     follow_mouse = 1;
+    repeat_rate = 40;
+    repeat_delay = 400;
   };
 
   general = {
@@ -78,7 +78,7 @@
     "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
   ];
 
-  "$mod" = "SUPER";
+  "$mod" = "alt";
   "$menu" = "wofi --show drun";
   bind = [
     "$mod, Return, exec, ghostty"

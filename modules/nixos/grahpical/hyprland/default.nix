@@ -40,6 +40,7 @@ in {
 
       wayland.windowManager.hyprland = {
         enable = true;
+        systemd.enable = true;
         settings = import ./hyprland.nix;
       };
 
@@ -60,8 +61,8 @@ in {
             "~/pictures/wallpapers/simonstalenhag/svema/svema_12_big.jpg"
           ];
           wallpaper = [
+            "DP-1,~/pictures/wallpapers/simonstalenhag/svema/svema_12_big.jpg"
             "DP-2,~/pictures/wallpapers/simonstalenhag/svema/svema_12_big.jpg"
-            "DP-3,~/pictures/wallpapers/simonstalenhag/svema/svema_12_big.jpg"
           ];
         };
       };
