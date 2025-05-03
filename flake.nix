@@ -1,29 +1,23 @@
 {
   description = "A simple NixOS flake";
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     nix-homebrew = {
       url = "github:zhaofengli/nix-homebrew";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     agenix = {
       url = "github:ryantm/agenix";
       inputs = {
@@ -31,8 +25,10 @@
         home-manager.follows = "home-manager";
       };
     };
+    nvim = {
+      url = "github:brancobruyneel/nvim";
+    };
   };
-
   outputs = {
     self,
     nixpkgs,
@@ -41,6 +37,7 @@
     home-manager,
     agenix,
     nur,
+    nvim,
     ...
   } @ inputs: let
     nixosSystem = "x86_64-linux";
@@ -65,7 +62,6 @@
         ];
       };
     };
-
     darwinConfigurations = {
       makboek = nix-darwin.lib.darwinSystem {
         system = darwinSystem;

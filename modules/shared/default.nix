@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: let
   cfg = config.custom;
@@ -44,7 +45,6 @@ in {
   config = {
     environment.systemPackages = with pkgs;
       [
-        neovim
         coreutils
         git
         jq

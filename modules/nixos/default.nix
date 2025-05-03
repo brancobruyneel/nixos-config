@@ -22,7 +22,6 @@ in {
         zip
         dnsutils
         nmap
-        neovim
       ]
       ++ cfg.extraSystemPackages;
 
@@ -56,7 +55,7 @@ in {
         enable = true;
         portal = {
           enable = true;
-           extraPortals = with pkgs; [
+          extraPortals = with pkgs; [
             xdg-desktop-portal-wlr
             xdg-desktop-portal-gtk
           ];
