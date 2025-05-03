@@ -7,6 +7,7 @@
     ./zsh.nix
     ./git.nix
     ./yazi.nix
+    ./neovim.nix
     ./tmux
     ./ghostty.nix
   ];
@@ -27,6 +28,7 @@
       yazi.enable = enabled;
       tmux.enable = enabled;
       ghostty.enable = enabled;
+      neovim.enable = enabled;
     };
   };
 }

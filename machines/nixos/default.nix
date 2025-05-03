@@ -61,6 +61,7 @@
 
     graphical.hyprland.enable = true;
     firefox.enable = true;
+    neovim.enable = true;
 
     extraHomePackages = with pkgs; [
       spotify

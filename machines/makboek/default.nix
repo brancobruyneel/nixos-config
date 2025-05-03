@@ -20,7 +20,6 @@
       spotify
       keycastr
       discord
-      zoom-us
       go
       glab
       gopls
@@ -48,6 +47,7 @@
       "raycast"
       "ghostty"
       "1password"
+      "zoom"
     ];
     onActivation.cleanup = "zap";
   };
