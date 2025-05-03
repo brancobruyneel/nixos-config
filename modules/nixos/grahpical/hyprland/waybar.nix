@@ -4,6 +4,5 @@
     spacing = 2;
     modules-left = ["hyprland/workspaces"];
     modules-center = ["hyprland/window"];
-    modules-right = ["mpris" "network" "battery" "clock"];
-  };
-}
+    modules-right = ["mpris" "bluetooth" "network" "battery" "clock" "tray"];
+  }; }

@@ -45,6 +45,10 @@
           set-option -sa terminal-overrides ",xterm*:Tc"
           set -g mouse on
 
+          # nvim
+          set-option -sg escape-time 10
+          set-option -g focus-events on
+
           # Start windows and panes at 1, not 0
           set -g base-index 1
           set -g pane-base-index 1
