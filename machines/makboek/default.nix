@@ -1,9 +1,8 @@
 {
-  config,
   pkgs,
-  inputs,
   ...
-}: {
+}:
+{
   networking.computerName = "makboek";
 
   custom = {

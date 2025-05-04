@@ -4,9 +4,11 @@
   pkgs,
   inputs,
   ...
-}: let
+}:
+let
   cfg = config.custom;
-in {
+in
+{
   imports = [
     ./development
     ./programs
@@ -21,14 +23,14 @@ in {
 
     extraSystemPackages = lib.mkOption {
       type = lib.types.listOf lib.types.package;
-      default = [];
-      example = [pkgs.unzip];
+      default = [ ];
+      example = [ pkgs.unzip ];
     };
 
     extraHomePackages = lib.mkOption {
       type = lib.types.listOf lib.types.package;
-      default = [];
-      example = [pkgs.spotify-tui];
+      default = [ ];
+      example = [ pkgs.spotify-tui ];
     };
 
     homeStateVersion = lib.mkOption {
@@ -43,7 +45,8 @@ in {
   };
 
   config = {
-    environment.systemPackages = with pkgs;
+    environment.systemPackages =
+      with pkgs;
       [
         coreutils
         git
@@ -61,7 +64,10 @@ in {
     environment.variables.EDITOR = "nvim";
 
     nix = {
-      settings.experimental-features = ["nix-command" "flakes"];
+      settings.experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
     };
 
     nixpkgs.config.allowUnfree = true;
@@ -73,16 +79,22 @@ in {
     home-manager = {
       useGlobalPkgs = true;
       users = {
-        "${config.custom.user}" = {...}: {
-          home.stateVersion = cfg.homeStateVersion;
-          home.packages = cfg.extraHomePackages;
+        "${config.custom.user}" =
+          { ... }:
+          {
+            home.stateVersion = cfg.homeStateVersion;
+            home.packages = cfg.extraHomePackages;
 
-          programs.direnv = {
-            enable = true;
-            enableZshIntegration = true;
-            nix-direnv.enable = true;
+            programs.direnv = {
+              enable = true;
+              enableZshIntegration = true;
+              nix-direnv.enable = true;
+            };
+
+            programs.ssh = {
+              enable = true;
+            };
           };
-        };
       };
     };
 
