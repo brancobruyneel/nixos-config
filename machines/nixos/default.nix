@@ -1,10 +1,10 @@
 {
   config,
   pkgs,
-  inputs,
   ...
-}: {
-  imports = [./hardware.nix];
+}:
+{
+  imports = [ ./hardware.nix ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -13,7 +13,7 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   environment.variables = {
     LIBVA_DRIVER_NAME = "nvidia";
@@ -65,11 +65,8 @@
 
     graphical.hyprland.enable = true;
     firefox.enable = true;
-<<<<<<< Updated upstream
     neovim.enable = true;
-=======
     discord.enable = true;
->>>>>>> Stashed changes
 
     extraHomePackages = with pkgs; [
       mpv
