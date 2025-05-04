@@ -3,6 +3,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    flake-utils.url = "github:numtide/flake-utils";
+
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -20,6 +22,7 @@
     agenix.inputs.home-manager.follows = "home-manager";
 
     nvim.url = "github:brancobruyneel/nvim";
+
   };
   outputs =
     {
