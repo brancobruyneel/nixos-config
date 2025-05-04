@@ -56,7 +56,6 @@
   };
 
   services.openssh.enable = true;
-  programs.ssh.startAgent = true;
 
   custom = {
     stateVersion = "24.11";
