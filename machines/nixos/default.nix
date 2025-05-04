@@ -8,6 +8,7 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  # https://github.com/NixOS/nixpkgs/issues/382612#issuecomment-2734556441
   boot.kernelParams = [ "module_blacklist=amdgpu" ];
 
   hardware.bluetooth.enable = true;
