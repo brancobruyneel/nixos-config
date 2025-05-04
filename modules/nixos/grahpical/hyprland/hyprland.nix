@@ -25,7 +25,7 @@
     "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
     "col.inactive_border" = "rgba(595959aa)";
 
-    layout = "master";
+    layout = "dwindle";
   };
 
   dwindle = {
@@ -93,6 +93,14 @@
     "$mod, L, movefocus, r"
     "$mod, K, movefocus, u"
     "$mod, J, movefocus, d"
+
+    "$mod SHIFT, H, movewindow, l"
+    "$mod SHIFT, L, movewindow, r"
+    "$mod SHIFT, K, movewindow, u"
+    "$mod SHIFT, J, movewindow, d"
+
+    "$mod, comma, movewindow, mon:l"
+    "$mod, period,  movewindow, mon:r"
 
     "$mod, 1, workspace, 1"
     "$mod, 2, workspace, 2"
