@@ -13,6 +13,7 @@
     graphical.aerospace.enable = true;
 
     development.enable = true;
+    git.includeWork = true;
     firefox.enable = true;
 
     extraHomePackages = with pkgs; [

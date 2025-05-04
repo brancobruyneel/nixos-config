@@ -1,53 +1,66 @@
 {
   config,
   lib,
-  pkgs,
   ...
-}: {
+}:
+{
   options.custom.git = {
     enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      example = true;
+    };
+    includeWork = lib.mkOption {
+      type = lib.types.bool;
       default = false;
       example = true;
     };
   };
 
-  config = let
-    base = {
-      programs.git = {
-        enable = true;
-        userName = "brancobruyneel";
-        userEmail = "43569324+brancobruyneel@users.noreply.github.com";
-        extraConfig = {
-          init.defaultBranch = "main";
-          branch.autosetuprebase = "always";
-          pull.rebase = true;
-          rebase.autoStash = true;
-          push.autoSetupRemote = true;
-          core.autocrlf = "input";
+  config =
+    let
+      user = config.custom.user;
+
+      base = {
+        programs.git = {
+          enable = true;
+          userName = "brancobruyneel";
+          userEmail = "43569324+brancobruyneel@users.noreply.github.com";
+          extraConfig = {
+            init.defaultBranch = "main";
+            branch.autosetuprebase = "always";
+            pull.rebase = true;
+            rebase.autoStash = true;
+            push.autoSetupRemote = true;
+            core.autocrlf = "input";
+          };
+
+          includes = lib.mkIf config.custom.git.includeWork [
+            {
+              condition = "gitdir:~/work/**";
+              path = config.age.secrets."git/work".path;
+            }
+          ];
+
+          ignores = [
+            ".DS_Store"
+            ".data"
+            ".direnv"
+            ".envrc"
+            ".dir-locals.el"
+          ];
         };
-        # includes = [
-        #   {
-        #     condition = "gitdir:~/work/**";
-        #     path = config.age.secrets."git/work".path;
-        #   }
-        # ];
-        ignores = [
-          ".DS_Store"
-          ".data"
-          ".direnv"
-          ".envrc"
-          ".dir-locals.el"
-        ];
       };
-    };
-  in
+
+      secrets = lib.mkIf config.custom.git.includeWork {
+        "git/work" = {
+          file = ../../../secrets/git/work.age;
+          owner = user;
+        };
+      };
+    in
     lib.mkIf config.custom.git.enable {
-      # age.secrets = {
-      #   "git/work" = {
-      #     file = ../../../secrets/git/work.age;
-      #     owner = config.custom.user;
-      #   };
-      # };
-      home-manager.users.${config.custom.user} = {...}: base;
+      age.secrets = secrets;
+      home-manager.users.${user} = { ... }: base;
     };
 }
