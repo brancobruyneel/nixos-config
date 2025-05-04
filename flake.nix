@@ -29,58 +29,61 @@
       url = "github:brancobruyneel/nvim";
     };
   };
-  outputs = {
-    self,
-    nixpkgs,
-    nix-darwin,
-    nix-homebrew,
-    home-manager,
-    agenix,
-    nur,
-    nvim,
-    ...
-  } @ inputs: let
-    nixosSystem = "x86_64-linux";
-    darwinSystem = "aarch64-darwin";
-  in {
-    nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
-        system = nixosSystem;
-        specialArgs = {inherit inputs;};
-        modules = [
-          {
-            nixpkgs.overlays = [
-              agenix.overlays.default
-              nur.overlays.default
-            ];
-          }
-          home-manager.nixosModules.home-manager
-          agenix.nixosModules.default
-          ./machines/nixos
-          ./modules/nixos
-          ./modules/shared
-        ];
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nix-darwin,
+      nix-homebrew,
+      home-manager,
+      agenix,
+      nur,
+      nvim,
+      ...
+    }@inputs:
+    let
+      nixosSystem = "x86_64-linux";
+      darwinSystem = "aarch64-darwin";
+    in
+    {
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          system = nixosSystem;
+          specialArgs = { inherit inputs; };
+          modules = [
+            {
+              nixpkgs.overlays = [
+                agenix.overlays.default
+                nur.overlays.default
+              ];
+            }
+            home-manager.nixosModules.home-manager
+            agenix.nixosModules.default
+            ./machines/nixos
+            ./modules/nixos
+            ./modules/shared
+          ];
+        };
+      };
+      darwinConfigurations = {
+        makboek = nix-darwin.lib.darwinSystem {
+          system = darwinSystem;
+          specialArgs = { inherit inputs; };
+          modules = [
+            {
+              nixpkgs.overlays = [
+                agenix.overlays.default
+                nur.overlays.default
+              ];
+            }
+            home-manager.darwinModules.home-manager
+            nix-homebrew.darwinModules.nix-homebrew
+            agenix.darwinModules.default
+            ./modules/darwin
+            ./modules/shared
+            ./machines/makboek
+          ];
+        };
       };
     };
-    darwinConfigurations = {
-      makboek = nix-darwin.lib.darwinSystem {
-        system = darwinSystem;
-        specialArgs = {inherit inputs;};
-        modules = [
-          {
-            nixpkgs.overlays = [
-              agenix.overlays.default
-              nur.overlays.default
-            ];
-          }
-          home-manager.darwinModules.home-manager
-          nix-homebrew.darwinModules.nix-homebrew
-          agenix.darwinModules.default
-          ./modules/darwin
-          ./modules/shared
-          ./machines/makboek
-        ];
-      };
-    };
-  };
 }
