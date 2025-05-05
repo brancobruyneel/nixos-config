@@ -1,8 +1,4 @@
-{
-  pkgs,
-  ...
-}:
-{
+{pkgs, ...}: {
   networking.computerName = "makboek";
 
   custom = {
@@ -48,6 +44,7 @@
       "ghostty"
       "1password"
       "zoom"
+      "philips-hue-sync"
     ];
     onActivation.cleanup = "zap";
   };
