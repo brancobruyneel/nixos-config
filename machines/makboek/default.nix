@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   networking.computerName = "makboek";
 
   custom = {
@@ -26,6 +27,8 @@
       docker-compose
       colima
       fioctl
+      telegram-desktop
+      ffmpeg
     ];
   };
 
