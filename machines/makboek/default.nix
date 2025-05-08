@@ -28,6 +28,7 @@
       colima
       fioctl
       telegram-desktop
+      signal-desktop-bin
       ffmpeg
     ];
   };
