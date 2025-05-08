@@ -1,12 +1,13 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.custom.graphical.aerospace;
-in {
+in
+{
   options.custom.graphical.aerospace = {
     enable = lib.mkOption {
       default = false;
