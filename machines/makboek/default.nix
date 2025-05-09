@@ -30,6 +30,7 @@
       telegram-desktop
       signal-desktop-bin
       ffmpeg
+      obsidian
     ];
   };
 
