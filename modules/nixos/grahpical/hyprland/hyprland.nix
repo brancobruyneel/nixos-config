@@ -87,6 +87,7 @@
     "$mod, Q, exit,"
     "$mod, E, exec, ghostty -e yazi"
     "$mod, V, togglefloating,"
+    "$mod SHIFT, F, fullscreen,"
     "$mod, P, exec, $menu"
 
     "$mod, H, movefocus, l"
