@@ -22,7 +22,6 @@
     agenix.inputs.home-manager.follows = "home-manager";
 
     nvim.url = "github:brancobruyneel/nvim";
-
   };
   outputs =
     {
