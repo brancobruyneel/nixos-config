@@ -4,9 +4,11 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.custom.graphical.hyprland;
-in {
+in
+{
   options.custom.graphical.hyprland = {
     enable = mkOption {
       default = false;
@@ -20,61 +22,64 @@ in {
       withUWSM = true;
     };
 
-    home-manager.users.${config.custom.user} = {pkgs, ...}: {
-      home.packages = with pkgs; [
-        pamixer
-        playerctl
-        wl-clipboard
-        adwaita-icon-theme
-        adwaita-qt
-        gnome-bluetooth
-        libnotify
-        networkmanagerapplet
-        hyprpaper
-      ];
+    home-manager.users.${config.custom.user} =
+      { pkgs, ... }:
+      {
+        home.packages = with pkgs; [
+          pamixer
+          playerctl
+          wl-clipboard
+          adwaita-icon-theme
+          adwaita-qt
+          gnome-bluetooth
+          libnotify
+          networkmanagerapplet
+          hyprpaper
+          hyprshot
+        ];
 
-      services.gnome-keyring = {
-        enable = true;
-        components = [ "secrets" ];
-      };
-
-      wayland.windowManager.hyprland = {
-        enable = true;
-        systemd.enable = true;
-        settings = import ./hyprland.nix;
-      };
-
-      programs.waybar = {
-        enable = true;
-        systemd.enable = true;
-        settings = import ./waybar.nix;
-      };
-
-      services.dunst = {
-        enable = true;
-      };
-
-      services.hyprpaper = {
-        enable = true;
-        settings = {
-          preload = [
-            "~/pictures/wallpapers/simonstalenhag/svema/svema_12_big.jpg"
-          ];
-          wallpaper = [
-            "DP-1,~/pictures/wallpapers/simonstalenhag/svema/svema_12_big.jpg"
-            "DP-2,~/pictures/wallpapers/simonstalenhag/svema/svema_12_big.jpg"
-          ];
+        services.gnome-keyring = {
+          enable = true;
+          components = [ "secrets" ];
         };
+
+        wayland.windowManager.hyprland = {
+          enable = true;
+          systemd.enable = true;
+          settings = import ./hyprland.nix;
+        };
+
+        programs.waybar = {
+          enable = true;
+          systemd.enable = true;
+          settings = import ./waybar.nix;
+        };
+
+        services.dunst = {
+          enable = true;
+        };
+
+        services.hyprpaper = {
+          enable = true;
+          settings = {
+            preload = [
+              "~/pictures/wallpapers/simonstalenhag/svema/svema_12_big.jpg"
+            ];
+            wallpaper = [
+              "DP-1,~/pictures/wallpapers/simonstalenhag/svema/svema_12_big.jpg"
+              "DP-2,~/pictures/wallpapers/simonstalenhag/svema/svema_12_big.jpg"
+            ];
+          };
+        };
+
+        programs.wofi = import ./wofi.nix;
+
+        programs.zsh.profileExtra = ''
+          if uwsm check may-start -q; then
+            exec uwsm start hyprland-uwsm.desktop
+          fi
+        '';
       };
-
-      programs.wofi = import ./wofi.nix;
-
-      programs.zsh.profileExtra = ''
-        if uwsm check may-start -q; then
-          exec uwsm start hyprland-uwsm.desktop
-        fi
-      '';
-    };
 
     environment.sessionVariables = {
       NIXOS_OZONE_WL = "1";
@@ -85,9 +90,12 @@ in {
       fontconfig = {
         enable = true;
         defaultFonts = {
-          emoji = ["Symbola" "Noto Emoji"];
-          monospace = ["JetBrainsMono Nerd Font"];
-          serif = ["Source Serif Pro"];
+          emoji = [
+            "Symbola"
+            "Noto Emoji"
+          ];
+          monospace = [ "JetBrainsMono Nerd Font" ];
+          serif = [ "Source Serif Pro" ];
         };
       };
       packages = with pkgs; [
