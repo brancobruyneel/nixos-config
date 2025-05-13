@@ -42,6 +42,23 @@
             }
           ];
 
+          aliases = {
+            d = "diff";
+            dc = "diff --cached";
+            s = "status --short";
+            a = "add -vu";
+            A = "add -vA";
+            c = "commit";
+            cm = "commit -m";
+            ca = "commit -a";
+            cam = "commit -am";
+            co = "checkout";
+            cob = "checkout -b";
+            p = "pull";
+            pp = "git pull && push";
+            l = "log --graph --abbrev-commit --decorate --date=relative --format=format:\"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)\" --all"; # Pretty logs
+          };
+
           ignores = [
             ".DS_Store"
             ".data"
