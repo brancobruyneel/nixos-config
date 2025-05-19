@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   networking.computerName = "makboek";
 
@@ -64,6 +64,7 @@
   ];
 
   system = {
+    primaryUser = config.custom.user;
     defaults = {
       dock = {
         appswitcher-all-displays = true;
