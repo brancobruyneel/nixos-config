@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   options.custom.zsh = {
     enable = lib.mkOption {
       default = false;
@@ -15,73 +16,92 @@
     users.users.${config.custom.user}.shell = pkgs.zsh;
     programs.zsh.enable = true;
 
-    home-manager.users.${config.custom.user} = {pkgs, ...}: {
-      programs.zsh = {
-        enable = true;
-        shellAliases = {
-          # nix
-          nrb = "sudo nixos-rebuild switch --flake .";
+    home-manager.users.${config.custom.user} =
+      { pkgs, ... }:
+      {
+        programs.zsh = {
+          enable = true;
+          shellAliases = {
+            # nix
+            nrb = "sudo nixos-rebuild switch --flake ~/.config/nix";
+            drb = "sudo darwin-rebuild switch --flake ~/.config/nix";
 
-          v = "nvim";
+            # git
+            gd = "diff";
+            gdc = "diff --cached";
+            gs = "status --short";
+            ga = "add -vu";
+            gA = "add -vA";
+            gc = "commit";
+            gcm = "commit -m";
+            gca = "commit -a";
+            gcam = "commit -am";
+            gco = "checkout";
+            gcob = "checkout -b";
+            gp = "pull";
+            gpp = "git pull && push";
+            gl = "log --graph --abbrev-commit --decorate --date=relative --format=format:\"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)\" --all"; # Pretty logs
 
-          sd = "sudo shutdown now";
-          rb = "sudo reboot now";
+            v = "nvim";
 
-          ls = "ls --color=auto";
-          ll = "ls -lh";
-          la = "ls -a";
-          lla = "ls -lah";
+            sd = "sudo shutdown now";
+            rb = "sudo reboot now";
 
-          grep = "grep --color=auto";
-          diff = "diff --color=auto";
+            ls = "ls --color=auto";
+            ll = "ls -lh";
+            la = "ls -a";
+            lla = "ls -lah";
 
-          ".." = "cd ..";
-          "..." = "cd ../..";
-          "...." = "cd ../../..";
+            grep = "grep --color=auto";
+            diff = "diff --color=auto";
 
-          f = "yy"; # yazi
+            ".." = "cd ..";
+            "..." = "cd ../..";
+            "...." = "cd ../../..";
 
-          tf = "terraform";
+            f = "yy"; # yazi
 
-          # glab
-          glrv = "glab repo view -w";
-          glcr = "glab ci run | tee /dev/tty | grep -o 'https://[^ ]*' | xargs open";
+            tf = "terraform";
 
-          # tmux
-          t = "tmux new -s";
-          ta = "tmux at";
-          tk = "pkill tmux";
-          tls = "tmux ls";
-          tsd = "tmux-sync-dirs";
+            # glab
+            glrv = "glab repo view -w";
+            glcr = "glab ci run | tee /dev/tty | grep -o 'https://[^ ]*' | xargs open";
 
-          # docker
-          dps = "docker ps --format \"table {{ .ID }}\t{{.Names}}\t{{.Status}}\t{{.Ports}}\"";
+            # tmux
+            t = "tmux new -s";
+            ta = "tmux at";
+            tk = "pkill tmux";
+            tls = "tmux ls";
+            tsd = "tmux-sync-dirs";
+
+            # docker
+            dps = "docker ps --format \"table {{ .ID }}\t{{.Names}}\t{{.Status}}\t{{.Ports}}\"";
+          };
+
+          history.size = 1000;
+          history.path = "$HOME/.zsh_history";
+
+          initContent = lib.mkBefore ''
+            # vi mode
+            bindkey -v
+            bindkey '^R' history-incremental-search-backward
+            bindkey -v '^?' backward-delete-char
+
+            # tmux
+            bindkey -s '^f' 'tmux-sessionizer\n'
+            bindkey -s '^s' 'tmux-switch-session\n'
+          '';
         };
 
-        history.size = 1000;
-        history.path = "$HOME/.zsh_history";
+        programs.fzf = {
+          enable = true;
+          enableZshIntegration = true;
+        };
 
-        initContent = lib.mkBefore ''
-          # vi mode
-          bindkey -v
-          bindkey '^R' history-incremental-search-backward
-          bindkey -v '^?' backward-delete-char
-
-          # tmux
-          bindkey -s '^f' 'tmux-sessionizer\n'
-          bindkey -s '^s' 'tmux-switch-session\n'
-        '';
+        programs.starship = {
+          enable = true;
+          enableZshIntegration = true;
+        };
       };
-
-      programs.fzf = {
-        enable = true;
-        enableZshIntegration = true;
-      };
-
-      programs.starship = {
-        enable = true;
-        enableZshIntegration = true;
-      };
-    };
   };
 }
