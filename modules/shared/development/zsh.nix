@@ -27,20 +27,22 @@
             drb = "sudo darwin-rebuild switch --flake ~/.config/nix";
 
             # git
-            gd = "diff";
-            gdc = "diff --cached";
-            gs = "status --short";
-            ga = "add -vu";
-            gA = "add -vA";
-            gc = "commit";
-            gcm = "commit -m";
-            gca = "commit -a";
-            gcam = "commit -am";
-            gco = "checkout";
-            gcob = "checkout -b";
-            gp = "pull";
-            gpp = "git pull && push";
-            gl = "log --graph --abbrev-commit --decorate --date=relative --format=format:\"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)\" --all"; # Pretty logs
+            gd = "git diff";
+            gdc = "git diff --cached";
+            gs = "git status --short";
+            ga = "git add -vu";
+            gA = "git add -vA";
+            gc = "git commit";
+            gcm = "git commit -m";
+            gca = "git commit -a";
+            gcam = "git commit -am";
+            gco = "git checkout";
+            gcob = "git checkout -b";
+            gp = "git pull";
+            gpp = "git git pull && push";
+
+            # Pretty logs
+            gl = "git log --graph --abbrev-commit --decorate --date=relative --format=format:\"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)\" --all";
 
             v = "nvim";
 
