@@ -14,7 +14,7 @@
     firefox.enable = true;
 
     extraHomePackages = with pkgs; [
-      _1password
+      _1password-cli
       spotify
       keycastr
       discord
