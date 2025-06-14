@@ -15,6 +15,8 @@
 
     extraHomePackages = with pkgs; [
       _1password-cli
+      mqttui
+      mqttx-cli
       spotify
       keycastr
       discord
