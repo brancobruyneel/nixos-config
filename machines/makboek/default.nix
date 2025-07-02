@@ -15,25 +15,27 @@
 
     extraHomePackages = with pkgs; [
       _1password-cli
-      mqttui
-      mqttx-cli
-      spotify
-      keycastr
-      discord
-      go
-      glab
-      gopls
-      golangci-lint
-      gotestsum
+      air
+      aws-vault
+      colima
       delve
+      discord
       docker
       docker-compose
-      colima
-      fioctl
-      telegram-desktop
-      signal-desktop-bin
       ffmpeg
+      fioctl
+      glab
+      go
+      golangci-lint
+      gopls
+      gotestsum
+      keycastr
+      mqttui
+      mqttx-cli
       obsidian
+      signal-desktop-bin
+      spotify
+      wireshark
     ];
   };
 
@@ -48,11 +50,12 @@
   homebrew = {
     enable = true;
     casks = [
-      "raycast"
-      "ghostty"
       "1password"
-      "zoom"
+      "figma"
+      "ghostty"
       "philips-hue-sync"
+      "raycast"
+      "zoom"
     ];
     onActivation.cleanup = "zap";
   };
