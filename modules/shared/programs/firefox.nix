@@ -23,6 +23,7 @@
                 ublock-origin
                 bitwarden
                 vimium
+                onepassword-password-manager
               ];
               extraConfig = ''
                 user_pref("extensions.autoDisableScopes", 0);
