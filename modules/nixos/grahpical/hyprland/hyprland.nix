@@ -1,7 +1,7 @@
 {
   monitor = [
-    "DP-1, 3840x2160@60.00Hz, 0x0, 1.5"
-    "DP-2, 3840x2160@60.00Hz, auto-right, 1.5, transform, 3"
+    "DP-2, 3840x2160@60.00Hz, 0x0, 1.5"
+    "DP-1, 3840x2160@60.00Hz, auto-right, 1.5, transform, 3"
   ];
 
   env = [
