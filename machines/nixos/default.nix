@@ -56,7 +56,10 @@
     layout = "us";
   };
 
+  programs.steam.enable = true;
+
   services.openssh.enable = true;
+  programs.ssh.startAgent = true;
 
   custom = {
     stateVersion = "24.11";
@@ -74,6 +77,10 @@
       signal-desktop
       docker
       docker-compose
+      go
+      golangci-lint
+      gopls
+      gotestsum
     ];
   };
 }
