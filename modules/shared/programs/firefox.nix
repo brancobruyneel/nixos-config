@@ -19,6 +19,17 @@
           enable = true;
           profiles = {
             default = {
+              settings = {
+                "browser.startup.homepage" = "https://duckduckgo.com/";
+                "browser.search.defaultenginename" = "ddg";
+                "browser.search.order.1" = "ddg";
+              };
+
+              search = {
+                force = true;
+                default = "ddg";
+              };
+
               extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
                 ublock-origin
                 bitwarden
