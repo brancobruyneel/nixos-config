@@ -88,6 +88,8 @@
             bindkey -v
             bindkey '^R' history-incremental-search-backward
             bindkey -v '^?' backward-delete-char
+            autoload edit-command-line; zle -N edit-command-line
+            bindkey -M vicmd v edit-command-line
 
             # tmux
             bindkey -s '^f' 'tmux-sessionizer\n'
