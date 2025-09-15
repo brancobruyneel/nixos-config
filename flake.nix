@@ -21,6 +21,8 @@
     agenix.inputs.home-manager.follows = "home-manager";
 
     nvim.url = "github:brancobruyneel/nvim";
+
+    nix-ai-tools.url = "github:numtide/nix-ai-tools";
   };
   outputs =
     {
@@ -29,6 +31,7 @@
       nix-darwin,
       nix-homebrew,
       home-manager,
+      nix-ai-tools,
       agenix,
       nur,
       ...
