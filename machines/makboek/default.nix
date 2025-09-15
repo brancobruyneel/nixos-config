@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  inputs,
+  ...
+}:
 {
   networking.computerName = "makboek";
 
@@ -13,30 +18,37 @@
     git.includeWork = true;
     firefox.enable = true;
 
-    extraHomePackages = with pkgs; [
-      _1password-cli
-      air
-      aws-vault
-      colima
-      delve
-      discord
-      docker
-      docker-compose
-      ffmpeg
-      fioctl
-      glab
-      go
-      golangci-lint
-      gopls
-      gotestsum
-      keycastr
-      mqttui
-      mqttx-cli
-      obsidian
-      signal-desktop-bin
-      spotify
-      wireshark
-    ];
+    extraHomePackages =
+      with pkgs;
+      [
+        _1password-cli
+        air
+        aws-vault
+        colima
+        delve
+        discord
+        docker
+        docker-compose
+        ffmpeg
+        fioctl
+        glab
+        go
+        golangci-lint
+        gopls
+        gotestsum
+        keycastr
+        mqttui
+        mqttx-cli
+        obsidian
+        signal-desktop-bin
+        spotify
+        wireshark
+        natscli
+        bruno
+      ]
+      ++ [
+        inputs.nix-ai-tools.packages.${pkgs.system}.crush
+      ];
   };
 
   security.pam.services.sudo_local.touchIdAuth = true;
