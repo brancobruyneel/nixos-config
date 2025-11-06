@@ -2,6 +2,7 @@
   description = "A simple NixOS flake";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    tfpkg.url = "github:NixOS/nixpkgs/3c614fbc76fc152f3e1bc4b2263da6d90adf80fb";
 
     flake-utils.url = "github:numtide/flake-utils";
 
@@ -28,6 +29,7 @@
     {
       self,
       nixpkgs,
+      tfpkg,
       nix-darwin,
       nix-homebrew,
       home-manager,
@@ -41,6 +43,7 @@
       darwinSystem = "aarch64-darwin";
     in
     {
+
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
           system = nixosSystem;
@@ -63,7 +66,12 @@
       darwinConfigurations = {
         makboek = nix-darwin.lib.darwinSystem {
           system = darwinSystem;
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs;
+            tfpkg = import tfpkg {
+              system = darwinSystem;
+            };
+          };
           modules = [
             {
               nixpkgs.overlays = [
