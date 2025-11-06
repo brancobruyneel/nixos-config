@@ -24,17 +24,19 @@
       base = {
         programs.git = {
           enable = true;
-          userName = "brancobruyneel";
-          userEmail = "43569324+brancobruyneel@users.noreply.github.com";
-          extraConfig = {
-            init.defaultBranch = "main";
-            branch.autosetuprebase = "always";
-            pull.rebase = true;
-            rebase.autoStash = true;
-            push.autoSetupRemote = true;
-            core.autocrlf = "input";
-          };
+          settings = {
+            user.name = "brancobruyneel";
+            user.email = "43569324+brancobruyneel@users.noreply.github.com";
+            extraConfig = {
+              init.defaultBranch = "main";
+              branch.autosetuprebase = "always";
+              pull.rebase = true;
+              rebase.autoStash = true;
+              push.autoSetupRemote = true;
+              core.autocrlf = "input";
+            };
 
+          };
           includes = lib.mkIf config.custom.git.includeWork [
             {
               condition = "gitdir:~/work/**";
