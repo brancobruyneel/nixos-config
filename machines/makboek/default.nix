@@ -1,5 +1,6 @@
 {
   pkgs,
+  tfpkg,
   config,
   inputs,
   ...
@@ -23,7 +24,10 @@
       [
         _1password-cli
         air
+        agenix-cli
         aws-vault
+        awscli2
+        devenv
         colima
         delve
         discord
@@ -35,6 +39,8 @@
         go
         golangci-lint
         gopls
+        gofumpt
+        go-task
         gotestsum
         keycastr
         mqttui
@@ -42,8 +48,8 @@
         obsidian
         signal-desktop-bin
         spotify
-        wireshark
         natscli
+        tfpkg.terraform
         bruno
       ]
       ++ [
@@ -77,7 +83,7 @@
     fira-mono
     fira-code
     fira
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     nerd-fonts.jetbrains-mono
   ];
 

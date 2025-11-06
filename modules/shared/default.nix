@@ -71,6 +71,7 @@ in
     };
 
     nixpkgs.config.allowUnfree = true;
+    nixpkgs.config.allowBroken = true;
 
     users.users.${config.custom.user} = {
       description = "Branco Bruyneel";
