@@ -49,10 +49,7 @@
             sd = "sudo shutdown now";
             rb = "sudo reboot now";
 
-            ls = "ls --color=auto";
-            ll = "ls -lh";
-            la = "ls -a";
-            lla = "ls -lah";
+            ls = "eza";
 
             grep = "grep --color=auto";
             diff = "diff --color=auto";

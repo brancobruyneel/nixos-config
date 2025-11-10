@@ -58,6 +58,7 @@ in
         unzip
         dnsutils
         nmap
+        eza
       ]
       ++ cfg.extraSystemPackages;
 
