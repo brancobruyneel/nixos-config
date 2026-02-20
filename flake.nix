@@ -77,6 +77,7 @@
               nixpkgs.overlays = [
                 agenix.overlays.default
                 nur.overlays.default
+                (import ./overlays)
               ];
             }
             home-manager.darwinModules.home-manager
