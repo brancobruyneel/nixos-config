@@ -27,6 +27,7 @@
         agenix-cli
         aws-vault
         awscli2
+        ssm-session-manager-plugin
         devenv
         colima
         delve
@@ -47,13 +48,22 @@
         mqttx-cli
         obsidian
         signal-desktop-bin
-        spotify
         natscli
         tfpkg.terraform
         bruno
+        mongodb-atlas-cli
+        mongosh
+        mongodb-compass
+        nodejs
+        rustc
+        cargo
+        rustfmt
+        clippy
+        rust-analyzer
+        claude-chill
       ]
       ++ [
-        inputs.nix-ai-tools.packages.${pkgs.system}.crush
+        inputs.nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.crush
       ];
   };
 
@@ -62,7 +72,7 @@
 
   services = {
     openssh.enable = true;
-    tailscale.enable = true;
+    tailscale.enable = false;
   };
 
   homebrew = {
@@ -74,6 +84,8 @@
       "philips-hue-sync"
       "raycast"
       "zoom"
+      "spotify"
+      "unity-hub"
     ];
     onActivation.cleanup = "zap";
   };
