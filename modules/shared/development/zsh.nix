@@ -19,12 +19,16 @@
     home-manager.users.${config.custom.user} =
       { pkgs, ... }:
       {
+        home.sessionPath = [ "$HOME/.cargo/bin" ];
+
         programs.zsh = {
           enable = true;
           shellAliases = {
             # nix
             nrb = "sudo nixos-rebuild switch --flake ~/.config/nix";
             drb = "sudo darwin-rebuild switch --flake ~/.config/nix";
+
+            clanker = "claude";
 
             # git
             gd = "git diff";
