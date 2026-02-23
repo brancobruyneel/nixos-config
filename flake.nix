@@ -33,7 +33,6 @@
       nix-darwin,
       nix-homebrew,
       home-manager,
-      nix-ai-tools,
       agenix,
       nur,
       ...

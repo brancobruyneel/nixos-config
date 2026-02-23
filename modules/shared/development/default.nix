@@ -2,7 +2,8 @@
   config,
   lib,
   ...
-}: {
+}:
+{
   imports = [
     ./zsh.nix
     ./git.nix
@@ -10,6 +11,7 @@
     ./neovim.nix
     ./tmux
     ./ghostty.nix
+    ./ai
   ];
 
   options.custom.development = {
@@ -19,16 +21,19 @@
     };
   };
 
-  config = let
-    enabled = lib.mkDefault true;
-  in {
-    custom = {
-      zsh.enable = enabled;
-      git.enable = enabled;
-      yazi.enable = enabled;
-      tmux.enable = enabled;
-      ghostty.enable = enabled;
-      neovim.enable = enabled;
+  config =
+    let
+      enabled = lib.mkDefault true;
+    in
+    {
+      custom = {
+        zsh.enable = enabled;
+        git.enable = enabled;
+        yazi.enable = enabled;
+        tmux.enable = enabled;
+        ghostty.enable = enabled;
+        neovim.enable = enabled;
+        ai.enable = enabled;
+      };
     };
-  };
 }
