@@ -12,4 +12,5 @@ let
 in
 {
   "git/work.age".publicKeys = work;
+  "keys/trellis-api.age".publicKeys = work;
 }
