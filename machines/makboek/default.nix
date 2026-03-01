@@ -18,6 +18,7 @@
     development.enable = true;
     git.includeWork = true;
     firefox.enable = true;
+    zen.enable = true;
 
     extraHomePackages =
       with pkgs;

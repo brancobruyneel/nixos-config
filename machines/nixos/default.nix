@@ -67,6 +67,7 @@
 
     graphical.hyprland.enable = true;
     firefox.enable = true;
+    zen.enable = true;
     neovim.enable = true;
     discord.enable = true;
 

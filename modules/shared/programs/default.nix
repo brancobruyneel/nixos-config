@@ -1,3 +1,3 @@
 {...}: {
-  imports = [./firefox.nix ./vesktop.nix];
+  imports = [./firefox.nix ./vesktop.nix ./zen.nix];
 }

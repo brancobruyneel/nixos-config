@@ -24,6 +24,9 @@
     nvim.url = "github:brancobruyneel/nvim";
 
     nix-ai-tools.url = "github:numtide/nix-ai-tools";
+
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    zen-browser.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs =
     {
