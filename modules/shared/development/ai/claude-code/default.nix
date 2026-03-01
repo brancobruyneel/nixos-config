@@ -45,20 +45,6 @@ in
 
           attribution.commit = "";
 
-          # Plugins
-          enabledPlugins = {
-            "REDACTED@REDACTED" = true;
-          };
-          extraKnownMarketplaces = {
-            "REDACTED" = {
-              "source" = {
-                "source" = "directory";
-                "path" =
-                  "/Users/branco/work/REDACTED/projects/cloud-projects/REDACTED/enabling/REDACTED";
-              };
-            };
-          };
-
           statusLine = {
             type = "command";
             command = "input=$(cat); echo \"[$(echo \"$input\" | jq -r '.model.display_name')] 📁 $(basename \"$(echo \"$input\" | jq -r '.workspace.current_dir')\")\"";
