@@ -1,3 +1,8 @@
+---
+name: git-workflows
+description: Git workflow reference for branching, committing, rebasing, stashing, and common operations.
+---
+
 # Git Workflows
 
 ## Branch Strategy

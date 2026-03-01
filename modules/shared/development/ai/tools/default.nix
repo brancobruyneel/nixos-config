@@ -1,52 +1,44 @@
 { lib }:
 let
-  inherit (lib) mapAttrsToList concatStringsSep;
   inherit (builtins) readFile;
-
-  # Convert an attribute set to YAML frontmatter
-  toYamlFrontmatter =
-    attrs:
-    let
-      formatValue =
-        v:
-        if builtins.isList v then
-          "\n" + concatStringsSep "\n" (map (x: "  - ${x}") v)
-        else if builtins.isBool v then
-          if v then "true" else "false"
-        else
-          toString v;
-
-      lines = mapAttrsToList (k: v: "${k}: ${formatValue v}") attrs;
-    in
-    "---\n${concatStringsSep "\n" lines}\n---\n";
-
-  # Read markdown file and prepend YAML frontmatter from Nix attrs
-  mkMarkdownWithFrontmatter =
-    frontmatter: mdFile: (toYamlFrontmatter frontmatter) + "\n" + (readFile mdFile);
 
   # Import agent and command definitions
   agents = import ./agents.nix { inherit lib; };
   commands = import ./commands.nix { inherit lib; };
 
-  # Base instructions shared by all agents
-  baseInstructions = readFile ./base.md;
+  # Claude Code expects YAML frontmatter with: name, description, tools (comma-sep), model
+  renderAgentFrontmatter = agent: ''
+    ---
+    name: ${agent.name}
+    description: ${agent.description}
+    tools: ${lib.concatStringsSep ", " agent.allowed-tools}
+    model: ${agent.model}
+    ---
+  '';
 
-  # Build Claude Code agent format
-  mkClaudeAgent = name: agent: {
-    inherit name;
-    inherit (agent) description model;
-    allowedTools = agent.allowed-tools;
-    customInstructions = baseInstructions + "\n\n" + (readFile agent.instructionsFile);
-  };
+  renderAgent = name: agent: ''
+    ${lib.trim (renderAgentFrontmatter (agent // { inherit name; }))}
 
-  # Build Claude Code command format
-  mkClaudeCommand = name: cmd: {
-    inherit name;
-    inherit (cmd) description model;
-    allowedTools = cmd.allowed-tools;
-    argumentHint = cmd.argument-hint or "";
-    customInstructions = readFile cmd.instructionsFile;
-  };
+    ${lib.trim (readFile ./base.md)}
+
+    ${lib.trim (readFile agent.instructionsFile)}
+  '';
+
+  # Claude Code expects YAML frontmatter with: allowed-tools, argument-hint, description, model
+  renderCommandFrontmatter = cmd: ''
+    ---
+    ${lib.optionalString (cmd.allowed-tools != [ ]) "allowed-tools: ${lib.concatStringsSep ", " cmd.allowed-tools}"}
+    ${lib.optionalString (cmd ? argument-hint) "argument-hint: ${cmd.argument-hint}"}
+    ${lib.optionalString (cmd ? description) "description: ${cmd.description}"}
+    model: ${cmd.model}
+    ---
+  '';
+
+  renderCommand = _name: cmd: ''
+    ${lib.trim (renderCommandFrontmatter cmd)}
+
+    ${lib.trim (readFile cmd.instructionsFile)}
+  '';
 
   # Merge helper for extending agents
   mergeAgents =
@@ -68,29 +60,22 @@ let
 
 in
 {
-  inherit mergeAgents mergeCommands baseInstructions;
+  inherit mergeAgents mergeCommands;
 
   # Raw definitions for extending
   raw = {
     inherit agents commands;
   };
 
-  # Claude Code formatted output
+  # Claude Code formatted output (markdown with YAML frontmatter)
   claudeCode = {
-    agents = builtins.mapAttrs mkClaudeAgent agents;
-    commands = builtins.mapAttrs mkClaudeCommand commands;
+    agents = builtins.mapAttrs renderAgent agents;
+    commands = builtins.mapAttrs renderCommand commands;
   };
 
-  # OpenCode formatted output (similar structure, can be customized)
-  opencode = {
-    agents = builtins.mapAttrs mkClaudeAgent agents;
-    commands = builtins.mapAttrs mkClaudeCommand commands;
-  };
+  # Skills directory path (for skillsDir option)
+  skillsDir = ./skills;
 
-  # Skills as readable files (for memory/context injection)
-  skills = {
-    commit-messages = readFile ./skills/commit-messages/SKILL.md;
-    writing-nix = readFile ./skills/writing-nix/SKILL.md;
-    git-workflows = readFile ./skills/git-workflows/SKILL.md;
-  };
+  # Base instructions file path (for memory.source option)
+  baseInstructions = ./base.md;
 }

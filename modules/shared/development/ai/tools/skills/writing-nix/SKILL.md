@@ -1,3 +1,8 @@
+---
+name: writing-nix
+description: Nix language reference and best practices. Use when writing or modifying Nix code, modules, or flakes.
+---
+
 # Writing Nix
 
 ## Language Basics

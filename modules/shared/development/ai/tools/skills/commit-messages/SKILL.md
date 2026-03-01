@@ -1,3 +1,8 @@
+---
+name: commit-messages
+description: Conventional commit message format and guidelines. Use when creating git commits or writing commit messages.
+---
+
 # Conventional Commit Messages
 
 ## Format

@@ -27,21 +27,21 @@ in
 
         package = inputs.nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.claude-code;
 
+        # Agents as markdown files with YAML frontmatter
+        inherit (ai-tools.claudeCode) agents;
+
+        # Commands as markdown files with YAML frontmatter
+        inherit (ai-tools.claudeCode) commands;
+
+        # Skills directory containing SKILL.md files
+        skillsDir = ai-tools.skillsDir;
+
+        # Base instructions as CLAUDE.md
+        memory.source = ai-tools.baseInstructions;
+
         settings = {
           editorMode = "vim";
           theme = "dark";
-
-          # AI Tools - agents and commands
-          agents = ai-tools.claudeCode.agents;
-          commands = ai-tools.claudeCode.commands;
-
-          # Memory includes base instructions and skills
-          memory = [
-            ai-tools.baseInstructions
-            ai-tools.skills.commit-messages
-            ai-tools.skills.writing-nix
-            ai-tools.skills.git-workflows
-          ];
 
           # Plugins
           enabledPlugins = {
