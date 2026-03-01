@@ -81,6 +81,8 @@
       golangci-lint
       gopls
       gotestsum
+      spotify
+      github-cli
     ];
   };
 }
