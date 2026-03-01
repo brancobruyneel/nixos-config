@@ -103,8 +103,6 @@ in
           recursive = true;
           executable = false;
         };
-
-        programs.ssh.enable = true;
       };
 
     nix = {
