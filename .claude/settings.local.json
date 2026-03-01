@@ -33,7 +33,8 @@
       "mcp__plugin_daikin_datadog__search_datadog_spans",
       "mcp__plugin_daikin_datadog__search_datadog_service_dependencies",
       "mcp__plugin_daikin_datadog__search_datadog_notebooks",
-      "mcp__plugin_daikin_datadog__create_datadog_notebook"
+      "mcp__plugin_daikin_datadog__create_datadog_notebook",
+      "Bash(git rm:*)"
     ]
   },
   "outputStyle": "default"

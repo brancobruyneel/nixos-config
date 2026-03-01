@@ -1,0 +1,163 @@
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+let
+  inherit (lib) mkIf mkEnableOption mkOption types;
+
+  cfg = config.custom.ai.claude-code;
+  ai-tools = import ../tools { inherit lib; };
+
+  fileSuggestionScript = pkgs.writeShellScript "claude-file-suggestion" ''
+    QUERY=$(${pkgs.jq}/bin/jq -r '.query // ""')
+    PROJECT_DIR="''${CLAUDE_PROJECT_DIR:-.}"
+    cd "$PROJECT_DIR" || exit 1
+    ${pkgs.ripgrep}/bin/rg --files --follow --hidden . 2>/dev/null \
+      | sort -u \
+      | ${pkgs.fzf}/bin/fzf --filter "$QUERY" \
+      | head -15
+  '';
+in
+{
+  imports = [
+    ./permissions.nix
+  ];
+
+  options.custom.ai.claude-code = {
+    enable = mkEnableOption "Claude Code CLI tool";
+    permissionProfile = mkOption {
+      type = types.enum [
+        "conservative"
+        "standard"
+        "autonomous"
+      ];
+      default = "standard";
+      description = ''
+        Permission profile for Claude Code operations:
+        - conservative: Minimal permissions, most operations require confirmation
+        - standard: Balanced permissions for normal development workflows
+        - autonomous: Maximum autonomy for trusted environments
+      '';
+    };
+  };
+
+  config = mkIf cfg.enable {
+    programs.claude-code = {
+      enable = true;
+
+      package = inputs.nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.claude-code;
+
+      inherit (ai-tools.claudeCode) agents;
+      inherit (ai-tools.claudeCode) commands;
+
+      skillsDir = ai-tools.skillsDir;
+      memory.source = ai-tools.baseInstructions;
+
+      settings = {
+        editorMode = "vim";
+        theme = "dark";
+        effortLevel = "high";
+        voiceEnabled = true;
+
+        sandbox = {
+          enabled = true;
+          autoAllowBashIfSandboxed = true;
+          excludedCommands = [
+            "glab"
+            "acli"
+            "aws-vault"
+          ];
+          filesystem = {
+            denyRead = [
+              "/"
+            ];
+            allowRead = [
+              "."
+              "/nix/store"
+              "/nix/var"
+              "/run/current-system"
+              "/etc/nix"
+              "~/.nix-profile"
+              "~/.nix-defexpr"
+              "~/.local/state/nix"
+              "/bin"
+              "/usr/bin"
+              "/usr/lib"
+              "/usr/share"
+              "/opt/homebrew"
+              "/Library/Developer/CommandLineTools"
+              "~/.npm"
+              "~/.npm-global"
+              "~/go"
+              "~/.terraform.d"
+              "~/.cache"
+              "~/.gitconfig"
+              "~/.claude"
+              "~/work/daikin-edc-electrics"
+              "~/.config/nix"
+              "~/.aws/config"
+              "~/.config/glab-cli"
+            ];
+          };
+          network = {
+            allowedDomains = [
+              "gitlab.com"
+              "*.atlassian.net"
+              "registry.npmjs.org"
+            ];
+          };
+        };
+
+        env = {
+          CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS = "1";
+        };
+
+        attribution = {
+          commit = "";
+          pr = "";
+        };
+
+        enabledPlugins = {
+          "gopls-lsp@claude-plugins-official" = true;
+          "typescript-lsp@claude-plugins-official" = true;
+          "daikin@daikin-onecta-ai-tooling-marketplace" = true;
+        };
+
+        extraKnownMarketplaces = {
+          daikin-onecta-ai-tooling-marketplace = {
+            source = {
+              source = "directory";
+              path = "/Users/branco/work/daikin-edc-electrics/projects/cloud-projects/onecta/enabling/daikin-onecta-ai-tooling";
+            };
+          };
+          claude-code-plugins = {
+            source = {
+              source = "github";
+              repo = "anthropics/claude-code";
+            };
+          };
+          claude-plugins-official = {
+            source = {
+              source = "git";
+              url = "https://github.com/anthropics/claude-plugins-official.git";
+            };
+          };
+        };
+
+        fileSuggestion = {
+          type = "command";
+          command = "${fileSuggestionScript}";
+        };
+
+        statusLine = {
+          type = "command";
+          command = "input=$(cat); echo \"[$(echo \"$input\" | jq -r '.model.display_name')] 📁 $(basename \"$(echo \"$input\" | jq -r '.workspace.current_dir')\")\"";
+          padding = 0;
+        };
+      };
+    };
+  };
+}

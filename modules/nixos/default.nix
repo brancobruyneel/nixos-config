@@ -8,7 +8,7 @@ let
 in
 {
   imports = [
-    ./grahpical
+    ./graphical
   ];
 
   config = {
@@ -50,59 +50,6 @@ in
       { ... }:
       {
         home.stateVersion = cfg.stateVersion;
-      };
-
-    home-manager.users.${config.custom.user} =
-      { pkgs, ... }:
-      {
-        home.stateVersion = cfg.stateVersion;
-        home.packages =
-          with pkgs;
-          [
-            btop
-            bat
-            xdg-user-dirs
-          ]
-          ++ cfg.extraHomePackages;
-
-        xdg = {
-          enable = true;
-          portal = {
-            enable = true;
-            extraPortals = with pkgs; [
-              xdg-desktop-portal-wlr
-              xdg-desktop-portal-gtk
-            ];
-          };
-          userDirs = {
-            enable = true;
-            createDirectories = true;
-            desktop = "/home/${cfg.user}/desktop";
-            documents = "/home/${cfg.user}/documents";
-            download = "/home/${cfg.user}/downloads";
-            music = "/home/${cfg.user}/music";
-            pictures = "/home/${cfg.user}/pictures";
-            publicShare = "/home/${cfg.user}/desktop";
-            videos = "/home/${cfg.user}/videos";
-          };
-          mimeApps = {
-            enable = true;
-            defaultApplications = {
-              "text/html" = [ "firefox.desktop" ];
-              "x-scheme-handler/about" = [ "firefox.desktop" ];
-              "x-scheme-handler/http" = [ "firefox.desktop" ];
-              "x-scheme-handler/https" = [ "firefox.desktop" ];
-              "x-scheme-handler/unknown" = [ "firefox.desktop" ];
-              "x-scheme-handler/msteams" = [ "teams.desktop" ];
-            };
-          };
-        };
-
-        home.file."pictures/wallpapers/simonstalenhag" = {
-          source = ./../../media/wallpapers/simonstalenhag;
-          recursive = true;
-          executable = false;
-        };
       };
 
     nix = {

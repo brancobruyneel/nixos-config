@@ -1,5 +1,5 @@
 {
-  description = "A simple NixOS flake";
+  description = "Nix configuration";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     tfpkg.url = "github:NixOS/nixpkgs/3c614fbc76fc152f3e1bc4b2263da6d90adf80fb";
@@ -29,67 +29,23 @@
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs =
-    {
-      self,
-      nixpkgs,
-      tfpkg,
-      nix-darwin,
-      nix-homebrew,
-      home-manager,
-      agenix,
-      nur,
-      ...
-    }@inputs:
+    { self, nixpkgs, ... }@inputs:
     let
-      nixosSystem = "x86_64-linux";
-      darwinSystem = "aarch64-darwin";
+      lib = import ./lib { inherit (nixpkgs) lib; };
     in
     {
-
-      nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
-          system = nixosSystem;
-          specialArgs = { inherit inputs; };
-          modules = [
-            {
-              nixpkgs.overlays = [
-                agenix.overlays.default
-                nur.overlays.default
-              ];
-            }
-            home-manager.nixosModules.home-manager
-            agenix.nixosModules.default
-            ./machines/nixos
-            ./modules/nixos
-            ./modules/shared
-          ];
-        };
+      nixosConfigurations.nixos = lib.system.mkSystem {
+        inherit inputs;
+        system = "x86_64-linux";
+        hostname = "nixos";
+        username = "branco";
       };
-      darwinConfigurations = {
-        makboek = nix-darwin.lib.darwinSystem {
-          system = darwinSystem;
-          specialArgs = {
-            inherit inputs;
-            tfpkg = import tfpkg {
-              system = darwinSystem;
-            };
-          };
-          modules = [
-            {
-              nixpkgs.overlays = [
-                agenix.overlays.default
-                nur.overlays.default
-                (import ./overlays)
-              ];
-            }
-            home-manager.darwinModules.home-manager
-            nix-homebrew.darwinModules.nix-homebrew
-            agenix.darwinModules.default
-            ./modules/darwin
-            ./modules/shared
-            ./machines/makboek
-          ];
-        };
+
+      darwinConfigurations.makboek = lib.system.mkDarwin {
+        inherit inputs;
+        system = "aarch64-darwin";
+        hostname = "makboek";
+        username = "branco";
       };
     };
 }
