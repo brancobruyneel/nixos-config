@@ -18,12 +18,12 @@
   config = lib.mkIf config.custom.zen.enable {
     programs.zen-browser = {
       enable = true;
+      suppressXdgMigrationWarning = true;
       policies = {
         DisableAppUpdate = true;
       };
-      profiles."Default Profile" = {
+      profiles."default" = {
         isDefault = true;
-        path = "zfanmkyg.Default Profile";
 
         search = {
           force = true;
