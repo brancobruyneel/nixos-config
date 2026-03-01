@@ -43,6 +43,8 @@ in
           editorMode = "vim";
           theme = "dark";
 
+          attribution.commit = "";
+
           # Plugins
           enabledPlugins = {
             "REDACTED@REDACTED" = true;
