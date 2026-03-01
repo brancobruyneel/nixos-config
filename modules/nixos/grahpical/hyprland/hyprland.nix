@@ -69,14 +69,10 @@
     ];
   };
 
-  gestures = {
-    workspace_swipe = false;
-  };
-
-  windowrulev2 = [
-    "suppressevent maximize, class:.*"
-    "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-  ];
+  # windowrule = [
+  #   "suppressevent maximize, class:.*"
+  #   "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+  # ];
 
   "$mod" = "alt";
   "$menu" = "wofi --show drun";
