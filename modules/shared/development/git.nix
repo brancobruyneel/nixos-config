@@ -25,7 +25,11 @@
         programs.gh = {
           enable = true;
           settings.git_protocol = "ssh";
+          settings.version = "1";
         };
+
+        # Force overwrite existing gh config
+        xdg.configFile."gh/config.yml".force = true;
 
         programs.git = {
           enable = true;
