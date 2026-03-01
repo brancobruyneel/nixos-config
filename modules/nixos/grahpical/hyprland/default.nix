@@ -63,11 +63,17 @@ in
           enable = true;
           settings = {
             preload = [
-              "~/pictures/wallpapers/simonstalenhag/svema/svema_12_big.jpg"
+              "~/pictures/wallpapers/simonstalenhag/svema/svema_26_big.jpg"
             ];
             wallpaper = [
-              "DP-1,~/pictures/wallpapers/simonstalenhag/svema/svema_12_big.jpg"
-              "DP-2,~/pictures/wallpapers/simonstalenhag/svema/svema_12_big.jpg"
+              {
+                monitor = "DP-1";
+                path = "~/pictures/wallpapers/simonstalenhag/svema/svema_26_big.jpg";
+              }
+              {
+                monitor = "DP-2";
+                path = "~/pictures/wallpapers/simonstalenhag/svema/svema_26_big.jpg";
+              }
             ];
           };
         };
@@ -111,7 +117,7 @@ in
         fira-code
         fira
         symbola
-        noto-fonts-emoji
+        noto-fonts-color-emoji
         comic-relief
         nerd-fonts.jetbrains-mono
         open-sans
