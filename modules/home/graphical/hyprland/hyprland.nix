@@ -78,7 +78,7 @@
   "$menu" = "wofi --show drun";
   bind = [
     "$mod, Return, exec, ghostty"
-    "$mod, W, exec, firefox"
+    "$mod, W, exec, zen-beta"
     "$mod, C, killactive,"
     "$mod, Q, exit,"
     "$mod, E, exec, ghostty -e yazi"

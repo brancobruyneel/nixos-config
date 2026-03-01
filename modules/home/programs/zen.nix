@@ -2,6 +2,7 @@
   config,
   inputs,
   lib,
+  pkgs,
   ...
 }:
 {
@@ -17,9 +18,24 @@
   config = lib.mkIf config.custom.zen.enable {
     programs.zen-browser = {
       enable = true;
-      suppressXdgMigrationWarning = true;
       policies = {
         DisableAppUpdate = true;
+      };
+      profiles."Default Profile" = {
+        isDefault = true;
+        path = "zfanmkyg.Default Profile";
+
+        search = {
+          force = true;
+          default = "ddg";
+        };
+
+        extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
+          ublock-origin
+          bitwarden
+          vimium
+          onepassword-password-manager
+        ];
       };
     };
   };
