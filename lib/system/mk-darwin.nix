@@ -13,15 +13,13 @@ let
     nix-homebrew
     ;
 
-  tfpkg = import inputs.tfpkg { inherit system; };
-
   modulesDir = ../../modules;
   systemsDir = ../../systems;
   homesDir = ../../homes;
 in
 nix-darwin.lib.darwinSystem {
   inherit system;
-  specialArgs = { inherit inputs tfpkg; };
+  specialArgs = { inherit inputs; };
   modules = [
     {
       nixpkgs.overlays = [
@@ -40,7 +38,7 @@ nix-darwin.lib.darwinSystem {
       home-manager = {
         backupFileExtension = "backup";
         useGlobalPkgs = true;
-        extraSpecialArgs = { inherit inputs tfpkg; };
+        extraSpecialArgs = { inherit inputs; };
         users.${username} = {
           imports = [
             (modulesDir + "/home")

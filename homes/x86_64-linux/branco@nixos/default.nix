@@ -21,10 +21,6 @@ in
     signal-desktop
     docker
     docker-compose
-    go
-    golangci-lint
-    gopls
-    gotestsum
     spotify
     github-cli
   ];

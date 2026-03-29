@@ -2,10 +2,6 @@
   description = "Nix configuration";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    tfpkg.url = "github:NixOS/nixpkgs/3c614fbc76fc152f3e1bc4b2263da6d90adf80fb";
-
-    flake-utils.url = "github:numtide/flake-utils";
-
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -32,6 +28,10 @@
     { self, nixpkgs, ... }@inputs:
     let
       lib = import ./lib { inherit (nixpkgs) lib; };
+      forAllSystems = nixpkgs.lib.genAttrs [
+        "x86_64-linux"
+        "aarch64-darwin"
+      ];
     in
     {
       nixosConfigurations.nixos = lib.system.mkSystem {
@@ -47,5 +47,16 @@
         hostname = "makboek";
         username = "branco";
       };
+
+      devShells = forAllSystems (system:
+        let
+          pkgs = import nixpkgs { inherit system; };
+        in
+        {
+          go = import ./shells/go.nix { inherit pkgs; };
+          work = import ./shells/work.nix { inherit pkgs; };
+          rust = import ./shells/rust.nix { inherit pkgs; };
+        }
+      );
     };
 }
