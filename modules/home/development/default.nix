@@ -7,6 +7,7 @@
   imports = [
     ./zsh.nix
     ./git.nix
+    ./ssh.nix
     ./yazi.nix
     ./neovim.nix
     ./tmux
@@ -25,6 +26,7 @@
     custom = {
       zsh.enable = lib.mkDefault true;
       git.enable = lib.mkDefault true;
+      ssh.enable = lib.mkDefault true;
       yazi.enable = lib.mkDefault true;
       tmux.enable = lib.mkDefault true;
       ghostty.enable = lib.mkDefault true;
