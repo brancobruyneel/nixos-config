@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git grep:*)",
+      "Bash(nix flake metadata:*)",
+      "Bash(nix flake update:*)",
+      "Bash(find:*)",
+      "Bash(nix flake check:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(nix-instantiate:*)",
+      "Bash(curl:*)",
+      "Bash(gh api:*)",
+      "Bash(tree:*)",
+      "Bash(git mv:*)",
+      "Bash(gh repo view:*)",
+      "mcp__plugin_daikin_datadog__search_datadog_logs",
+      "Bash(gh issue:*)",
+      "WebFetch(domain:workmux.raine.dev)",
+      "WebFetch(domain:gitlab.com)",
+      "Bash(glab repo:*)",
+      "Bash(glab api:*)",
+      "WebSearch",
+      "WebFetch(domain:deepwiki.com)",
+      "WebFetch(domain:home-manager-options.extrakto.dev)",
+      "WebFetch(domain:mynixos.com)",
+      "Bash(grep:*)",
+      "Skill(build-check)",
+      "WebFetch(domain:www.reddit.com)",
+      "WebFetch(domain:old.reddit.com)",
+      "WebFetch(domain:discourse.nixos.org)",
+      "mcp__plugin_daikin_datadog__search_datadog_monitors",
+      "mcp__plugin_daikin_datadog__search_datadog_spans",
+      "mcp__plugin_daikin_datadog__search_datadog_service_dependencies",
+      "mcp__plugin_daikin_datadog__search_datadog_notebooks",
+      "mcp__plugin_daikin_datadog__create_datadog_notebook"
+    ]
+  },
+  "outputStyle": "default"
+}

@@ -62,7 +62,7 @@
             "..." = "cd ../..";
             "...." = "cd ../../..";
 
-            f = "yy"; # yazi
+            f = "y"; # yazi
 
             tf = "terraform";
 

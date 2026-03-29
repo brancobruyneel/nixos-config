@@ -20,6 +20,7 @@
       programs.yazi = {
         enable = true;
         enableZshIntegration = true;
+        shellWrapperName = "y";
         flavors = let
           flavorsRepo = pkgs.fetchFromGitHub {
             owner = "yazi-rs";

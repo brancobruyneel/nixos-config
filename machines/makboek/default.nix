@@ -1,11 +1,12 @@
 {
   pkgs,
+  lib,
   tfpkg,
   config,
-  inputs,
   ...
 }:
 {
+  imports = lib.optionals (builtins.pathExists ./private.nix) [ ./private.nix ];
   networking.computerName = "makboek";
 
   custom = {
@@ -20,52 +21,47 @@
     firefox.enable = true;
     zen.enable = true;
 
-    extraHomePackages =
-      with pkgs;
-      [
-        _1password-cli
-        air
-        agenix-cli
-        aws-vault
-        awscli2
-        ssm-session-manager-plugin
-        devenv
-        colima
-        delve
-        discord
-        docker
-        docker-compose
-        ffmpeg
-        fioctl
-        glab
-        go
-        golangci-lint
-        gopls
-        gofumpt
-        go-task
-        gotestsum
-        keycastr
-        mqttui
-        mqttx-cli
-        obsidian
-        signal-desktop-bin
-        natscli
-        tfpkg.terraform
-        bruno
-        mongodb-atlas-cli
-        mongosh
-        mongodb-compass
-        nodejs
-        rustc
-        cargo
-        rustfmt
-        clippy
-        rust-analyzer
-        claude-chill
-      ]
-      ++ [
-        inputs.nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.crush
-      ];
+    extraHomePackages = with pkgs; [
+      _1password-cli
+      air
+      agenix-cli
+      aws-vault
+      awscli2
+      ssm-session-manager-plugin
+      devenv
+      colima
+      delve
+      discord
+      docker
+      docker-compose
+      ffmpeg
+      fioctl
+      glab
+      go
+      golangci-lint
+      gopls
+      gofumpt
+      go-task
+      gotestsum
+      keycastr
+      mqttui
+      mqttx-cli
+      obsidian
+      acli
+      natscli
+      tfpkg.terraform
+      bruno
+      mongodb-atlas-cli
+      mongosh
+      mongodb-compass
+      nodejs
+      rustc
+      cargo
+      rustfmt
+      clippy
+      rust-analyzer
+      k3d
+    ];
   };
 
   security.pam.services.sudo_local.touchIdAuth = true;

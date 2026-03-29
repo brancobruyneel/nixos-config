@@ -25,7 +25,14 @@ You are an AI assistant working within a Nix-based configuration repository. Fol
 4. **Verify**: Check that changes work as expected
 5. **Document**: Add necessary comments or commit messages
 
-## 5. Conventional Commits
+## 5. Git Worktree Workflow
+When starting new feature work, always use `git worktree` instead of `git checkout -b`:
+- Create a new worktree: `git worktree add ../<repo>-<branch-name> -b <branch-name>`
+- This keeps the current branch intact and avoids disrupting in-progress work
+- After the worktree is created, `cd` into it before making changes
+- When done, the worktree can be removed with `git worktree remove ../<repo>-<branch-name>`
+
+## 6. Conventional Commits
 Follow the conventional commit format:
 ```
 <type>(<scope>): <description>
@@ -36,6 +43,10 @@ Follow the conventional commit format:
 ```
 
 Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`
+
+## 7. Writing Style
+- Never use em dashes (--/---) in prose, markdown files, commit messages, or merge request descriptions
+- Use commas, semicolons, colons, or separate sentences instead
 
 ## Nix-Specific Guidelines
 - Use `lib.mkIf` and `lib.mkEnableOption` for conditional configuration
