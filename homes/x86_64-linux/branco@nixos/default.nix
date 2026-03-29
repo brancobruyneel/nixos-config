@@ -40,6 +40,7 @@ in
     };
     userDirs = {
       enable = true;
+      setSessionVariables = false;
       createDirectories = true;
       desktop = "/home/${cfg.user}/desktop";
       documents = "/home/${cfg.user}/documents";
