@@ -18,7 +18,6 @@
   config = lib.mkIf config.custom.zen.enable {
     programs.zen-browser = {
       enable = true;
-      suppressXdgMigrationWarning = true;
       policies = {
         DisableAppUpdate = true;
       };
@@ -30,12 +29,7 @@
           default = "ddg";
         };
 
-        extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
-          ublock-origin
-          bitwarden
-          vimium
-          onepassword-password-manager
-        ];
+        extensions.packages = import ./browser-extensions.nix { inherit pkgs; };
       };
     };
   };

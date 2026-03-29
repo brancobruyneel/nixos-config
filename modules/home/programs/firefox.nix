@@ -28,12 +28,7 @@
             default = "ddg";
           };
 
-          extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
-            ublock-origin
-            bitwarden
-            vimium
-            onepassword-password-manager
-          ];
+          extensions.packages = import ./browser-extensions.nix { inherit pkgs; };
           extraConfig = ''
             user_pref("extensions.autoDisableScopes", 0);
             user_pref("extensions.enabledScopes", 15);
