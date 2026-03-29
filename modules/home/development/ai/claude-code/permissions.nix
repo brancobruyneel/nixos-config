@@ -47,8 +47,12 @@ let
     # Git staging
     "Bash(git add:*)"
 
-    # All nix commands
-    "Bash(nix:*)"
+    # Safe nix commands (read-only / build)
+    "Bash(nix build:*)"
+    "Bash(nix flake check:*)"
+    "Bash(nix flake lock:*)"
+    "Bash(nix flake update:*)"
+    "Bash(nix search:*)"
 
     # Directory creation and file utilities
     "Bash(mkdir:*)"
@@ -113,10 +117,6 @@ let
     "Bash(git switch:*)"
     "Bash(git stash:*)"
     "Bash(git restore:*)"
-    "Bash(git reset:*)"
-
-    # File operations
-    "Bash(rm:*)"
   ];
 
   # Operations requiring confirmation in non-autonomous mode
@@ -137,6 +137,13 @@ let
     "Bash(cp:*)"
     "Bash(mv:*)"
     "Bash(rm:*)"
+
+    # Nix commands that can execute arbitrary code (excluded from sandbox)
+    "Bash(nix shell:*)"
+    "Bash(nix develop:*)"
+    "Bash(nix run:*)"
+    "Bash(nix-shell:*)"
+    "Bash(nix-build:*)"
 
     # CLI tools that hit external APIs (excluded from sandbox)
     "Bash(glab:*)"
@@ -207,10 +214,14 @@ let
 
   # Autonomous mode still requires confirmation for these
   autonomousAsk = [
-    # Always confirm pushing
+    # Always confirm pushing and destructive git ops
     "Bash(git push:*)"
     "Bash(git merge:*)"
     "Bash(git rebase:*)"
+    "Bash(git reset:*)"
+
+    # File deletion
+    "Bash(rm:*)"
 
     # System operations
     "Bash(systemctl:*)"

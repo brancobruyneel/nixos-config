@@ -6,7 +6,12 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption mkOption types;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    mkOption
+    types
+    ;
 
   cfg = config.custom.ai.claude-code;
   ai-tools = import ../tools { inherit lib; };
@@ -65,47 +70,39 @@ in
         sandbox = {
           enabled = true;
           autoAllowBashIfSandboxed = true;
+          allowUnsandboxedCommands = false;
           excludedCommands = [
             "glab"
             "acli"
             "aws-vault"
+            "nix"
+            "nix-build"
+            "nix-shell"
+            "nix-instantiate"
+            "nixos-rebuild"
+            "home-manager"
+            "darwin-rebuild"
           ];
           filesystem = {
             denyRead = [
-              "/"
+              ".env"
+              ".env.local"
+              ".env.development"
+              ".env.production"
+              ".env.staging"
+              ".env.test"
+              "/etc/shadow"
+              "/etc/gshadow"
             ];
             allowRead = [
               "."
-              "/nix/store"
-              "/nix/var"
-              "/run/current-system"
-              "/etc/nix"
-              "~/.nix-profile"
-              "~/.nix-defexpr"
-              "~/.local/state/nix"
-              "/bin"
-              "/usr/bin"
-              "/usr/lib"
-              "/usr/share"
-              "/opt/homebrew"
-              "/Library/Developer/CommandLineTools"
-              "~/.npm"
-              "~/.npm-global"
-              "~/go"
-              "~/.terraform.d"
-              "~/.cache"
-              "~/.gitconfig"
-              "~/.claude"
-              "~/work/daikin-edc-electrics"
-              "~/.config/nix"
-              "~/.aws/config"
-              "~/.config/glab-cli"
             ];
           };
           network = {
             allowedDomains = [
               "gitlab.com"
               "github.com"
+              "api.github.com"
               "*.atlassian.net"
               "registry.npmjs.org"
             ];
