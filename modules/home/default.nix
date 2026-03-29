@@ -10,7 +10,6 @@
   ];
 
   home.stateVersion = osConfig.custom.homeStateVersion;
-  home.packages = osConfig.custom.extraHomePackages;
 
   programs.direnv = {
     enable = true;

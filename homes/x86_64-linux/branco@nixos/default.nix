@@ -10,14 +10,23 @@ in
   custom = {
     firefox.enable = true;
     zen.enable = true;
-    neovim.enable = true;
     discord.enable = true;
   };
 
   home.packages = with pkgs; [
-    btop
     bat
     xdg-user-dirs
+    mpv
+    ffmpeg-full
+    signal-desktop
+    docker
+    docker-compose
+    go
+    golangci-lint
+    gopls
+    gotestsum
+    spotify
+    github-cli
   ];
 
   xdg = {

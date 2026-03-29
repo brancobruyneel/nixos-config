@@ -15,18 +15,6 @@ in
       default = "branco";
     };
 
-    extraSystemPackages = lib.mkOption {
-      type = lib.types.listOf lib.types.package;
-      default = [ ];
-      example = [ pkgs.unzip ];
-    };
-
-    extraHomePackages = lib.mkOption {
-      type = lib.types.listOf lib.types.package;
-      default = [ ];
-      example = [ pkgs.spotify-tui ];
-    };
-
     homeStateVersion = lib.mkOption {
       default = config.custom.stateVersion;
     };
@@ -53,8 +41,7 @@ in
         dnsutils
         nmap
         eza
-      ]
-      ++ cfg.extraSystemPackages;
+      ];
 
     environment.variables.EDITOR = "nvim";
 
@@ -64,7 +51,6 @@ in
     ];
 
     nixpkgs.config.allowUnfree = true;
-    nixpkgs.config.allowBroken = true;
 
     users.users.${cfg.user} = {
       description = "Branco Bruyneel";

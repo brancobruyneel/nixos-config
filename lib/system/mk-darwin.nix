@@ -40,7 +40,7 @@ nix-darwin.lib.darwinSystem {
       home-manager = {
         backupFileExtension = "backup";
         useGlobalPkgs = true;
-        extraSpecialArgs = { inherit inputs; };
+        extraSpecialArgs = { inherit inputs tfpkg; };
         users.${username} = {
           imports = [
             (modulesDir + "/home")

@@ -64,19 +64,5 @@
     stateVersion = "24.11";
 
     graphical.hyprland.enable = true;
-
-    extraHomePackages = with pkgs; [
-      mpv
-      ffmpeg-full
-      signal-desktop
-      docker
-      docker-compose
-      go
-      golangci-lint
-      gopls
-      gotestsum
-      spotify
-      github-cli
-    ];
   };
 }
