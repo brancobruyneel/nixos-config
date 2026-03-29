@@ -34,7 +34,15 @@
       "mcp__plugin_daikin_datadog__search_datadog_service_dependencies",
       "mcp__plugin_daikin_datadog__search_datadog_notebooks",
       "mcp__plugin_daikin_datadog__create_datadog_notebook",
-      "Bash(git rm:*)"
+      "Bash(git rm:*)",
+      "Read(//nix/store/k6a9c5g2b9d5xizhrivaby33vqqp4mgv-nixos-system-nixos-26.05.20260324.46db2e0/**)",
+      "Read(//nix/store/jfsd564dlggsnhlcm82yz49ancvkxbkk-system-path/**)",
+      "Read(//nix/store/y4b3b0s45lh95v9hnzl1b2na4n8i30zk-zsh-5.9/bin/**)",
+      "Bash(ldd /nix/store/y4b3b0s45lh95v9hnzl1b2na4n8i30zk-zsh-5.9/bin/zsh)",
+      "Read(//nix/store/49q5d75sd1w54fxirmsvvrl6glll7v71-claude-code-2.1.81/bin/**)",
+      "Read(//proc/**)",
+      "Bash(bwrap:*)",
+      "WebFetch(domain:api.github.com)"
     ]
   },
   "outputStyle": "default"
