@@ -103,9 +103,33 @@ let
     "mcp__claude_ai_Slack__slack_read_*"
     "mcp__claude_ai_Slack__slack_search_*"
 
-    # Web access
+    # Web access - git forges
     "WebFetch(domain:gitlab.com)"
+    "WebFetch(domain:docs.gitlab.com)"
+
+    # Web access - language and framework docs
+    "WebFetch(domain:www.npmjs.com)"
+    "WebFetch(domain:developer.mozilla.org)"
+    "WebFetch(domain:nodejs.org)"
+    "WebFetch(domain:www.typescriptlang.org)"
+    "WebFetch(domain:pkg.go.dev)"
+    "WebFetch(domain:go.dev)"
+
+    # Web access - infra and cloud docs
+    "WebFetch(domain:registry.terraform.io)"
+    "WebFetch(domain:developer.hashicorp.com)"
+    "WebFetch(domain:docs.aws.amazon.com)"
+    "WebFetch(domain:www.mongodb.com)"
     "WebFetch(domain:docs.datadoghq.com)"
+
+    # Web access - Nix ecosystem
+    "WebFetch(domain:nixos.org)"
+    "WebFetch(domain:wiki.nixos.org)"
+    "WebFetch(domain:nix.dev)"
+    "WebFetch(domain:search.nixos.org)"
+
+    # Web access - general research
+    "WebFetch(domain:stackoverflow.com)"
     "WebSearch"
   ];
 
