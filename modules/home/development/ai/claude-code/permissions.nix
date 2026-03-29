@@ -18,7 +18,7 @@ let
     "TodoWrite(*)"
 
     # Safe read-only git commands
-    "Bash(git status)"
+    "Bash(git status:*)"
     "Bash(git log:*)"
     "Bash(git diff:*)"
     "Bash(git show:*)"

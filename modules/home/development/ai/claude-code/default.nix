@@ -105,6 +105,7 @@ in
           network = {
             allowedDomains = [
               "gitlab.com"
+              "github.com"
               "*.atlassian.net"
               "registry.npmjs.org"
             ];
