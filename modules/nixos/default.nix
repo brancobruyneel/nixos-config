@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   ...
 }:
 let
@@ -13,19 +12,6 @@ in
 
   config = {
     environment.localBinInPath = true;
-
-    environment.systemPackages =
-      with pkgs;
-      [
-        jq
-        btop
-        ripgrep
-        wget
-        zip
-        dnsutils
-        nmap
-      ]
-      ++ cfg.extraSystemPackages;
 
     # Don't wait for dhcpd when booting
     networking.dhcpcd.wait = "background";
@@ -53,10 +39,6 @@ in
       };
 
     nix = {
-      settings.experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
       settings.trusted-users = [
         "branco"
         "root"
@@ -71,7 +53,5 @@ in
         dates = [ "daily" ];
       };
     };
-
-    nixpkgs.config.allowUnfree = true;
   };
 }
