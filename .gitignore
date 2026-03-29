@@ -1,1 +1,2 @@
 systems/aarch64-darwin/makboek/private.nix
+.claude/settings.local.json
