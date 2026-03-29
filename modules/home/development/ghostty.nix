@@ -32,7 +32,7 @@
           "font-family" = "JetBrainsMono Nerd Font";
           "font-size" = fontSize;
           "window-decoration" = "false";
-          "theme" = "OneHalfDark";
+          "theme" = "One Half Dark";
           "font-thicken" = "true";
           "background" = "#1e222a";
           "foreground" = "#abb2bf";
