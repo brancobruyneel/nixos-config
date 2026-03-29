@@ -16,6 +16,7 @@ pkgs.mkShell {
     gotestsum
 
     # JavaScript
+    biome
     nodejs
 
     # Infrastructure
