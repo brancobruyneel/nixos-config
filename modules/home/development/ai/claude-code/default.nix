@@ -100,45 +100,7 @@ in
           };
           network = {
             allowedDomains = [
-              # Git forges
-              "gitlab.com"
-              "docs.gitlab.com"
-              "github.com"
-              "api.github.com"
-
-              # Collaboration
-              "*.atlassian.net"
-
-              # JavaScript / TypeScript / Node
-              "registry.npmjs.org"
-              "www.npmjs.com"
-              "developer.mozilla.org"
-              "nodejs.org"
-              "www.typescriptlang.org"
-
-              # Go
-              "pkg.go.dev"
-              "go.dev"
-
-              # Terraform / AWS
-              "registry.terraform.io"
-              "developer.hashicorp.com"
-              "docs.aws.amazon.com"
-
-              # MongoDB
-              "www.mongodb.com"
-
-              # Observability
-              "docs.datadoghq.com"
-
-              # Nix ecosystem
-              "nixos.org"
-              "wiki.nixos.org"
-              "nix.dev"
-              "search.nixos.org"
-
-              # General research
-              "stackoverflow.com"
+              "*"
             ];
           };
         };
