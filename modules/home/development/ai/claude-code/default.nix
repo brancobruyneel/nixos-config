@@ -80,6 +80,7 @@ in
             "gotestsum:*"
             "go-task:*"
             "opentofu:*"
+            "gh:*"
             "glab:*"
             "acli:*"
             # Accesses macOS Keychain for AWS credential storage
