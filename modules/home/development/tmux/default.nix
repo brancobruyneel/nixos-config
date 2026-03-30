@@ -82,6 +82,12 @@
         bind-key -T copy-mode-vi v send-keys -X begin-selection
         bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -in -selection clipboard'
 
+        # Let programs (e.g. Claude Code) rename windows via escape sequences
+        set -g allow-rename on
+
+        # Fix Nix-wrapped binary names in window titles (e.g. .claude-wrapped -> claude)
+        set -g automatic-rename-format "#{s/^\\.//;s/-wrapped$//:pane_current_command}"
+
         set -g @onedark_flavour 'dark'
       '';
     };
