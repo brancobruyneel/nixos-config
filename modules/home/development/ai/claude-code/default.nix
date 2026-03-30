@@ -76,6 +76,10 @@ in
           excludedCommands = [
             # Go binaries; sandbox-exec blocks macOS Keychain for TLS cert verification
             "go:*"
+            "golangci-lint:*"
+            "gotestsum:*"
+            "go-task:*"
+            "opentofu:*"
             "glab:*"
             "acli:*"
             # Accesses macOS Keychain for AWS credential storage
