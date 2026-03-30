@@ -71,22 +71,27 @@ in
           enabled = true;
           autoAllowBashIfSandboxed = true;
           allowUnsandboxedCommands = false;
+          # Note: `:*` suffix is required to match commands with arguments
+          # (see https://github.com/anthropics/claude-code/issues/10524)
           excludedCommands = [
-            "git"
-            "glab"
-            "acli"
-            "aws-vault"
-            "nix"
-            "nix-build"
-            "nix-shell"
-            "nix-instantiate"
-            "nixos-rebuild"
-            "home-manager"
-            "darwin-rebuild"
+            # Go binaries; sandbox-exec blocks macOS Keychain for TLS cert verification
+            "glab:*"
+            "acli:*"
+            # Accesses macOS Keychain for AWS credential storage
+            "aws-vault:*"
+            # Read/write paths outside project directory (nix store, profiles)
+            "nix:*"
+            "nix-build:*"
+            "nix-shell:*"
+            "nix-instantiate:*"
+            "nixos-rebuild:*"
+            "home-manager:*"
+            "darwin-rebuild:*"
           ];
           filesystem = {
             allowWrite = [
               "."
+              "~/.config/glab-cli"
             ];
             denyRead = [
               ".env"
