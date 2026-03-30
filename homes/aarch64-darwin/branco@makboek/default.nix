@@ -29,6 +29,7 @@
     mqttx-cli
     acli
     glab
+    github-cli
     natscli
   ];
 }
