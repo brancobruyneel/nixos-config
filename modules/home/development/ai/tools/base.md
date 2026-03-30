@@ -54,6 +54,12 @@ Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`
 - Permission profiles (conservative, standard, autonomous) are defined in `~/.config/nix/modules/home/development/ai/claude-code/permissions.nix`
 - To change Claude Code configuration, modify the relevant Nix module and rebuild
 
+## 9. Tool Preferences
+- Use `WebFetch` instead of `curl` or `wget` when fetching web content. `WebFetch` is auto-allowed; `curl`/`wget` require manual confirmation.
+- Use `glab` for GitLab content (MRs, issues, pipelines, repos). Read-only `glab` commands are auto-allowed.
+- Use `gh` for GitHub content (issues, PRs, repos, releases, runs). Read-only `gh` commands are auto-allowed.
+- Use `WebFetch` as a fallback for web content not covered by `gh` or `glab`.
+
 ## Nix-Specific Guidelines
 - Use `lib.mkIf` and `lib.mkEnableOption` for conditional configuration
 - Prefer `let...in` blocks for local bindings
