@@ -47,6 +47,7 @@ let
     # Git operations
     "Bash(git add:*)"
     "Bash(git commit:*)"
+    "Bash(git worktree:*)"
 
     # Safe nix commands (read-only / build)
     "Bash(nix build:*)"
@@ -54,6 +55,8 @@ let
     "Bash(nix flake lock:*)"
     "Bash(nix flake update:*)"
     "Bash(nix search:*)"
+    "Bash(nix run nixpkgs#:*)"
+    "Bash(nix shell nixpkgs#:*)"
 
     # Directory creation and file utilities
     "Bash(mkdir:*)"

@@ -72,6 +72,7 @@ in
           autoAllowBashIfSandboxed = true;
           allowUnsandboxedCommands = false;
           excludedCommands = [
+            "git"
             "glab"
             "acli"
             "aws-vault"
@@ -84,6 +85,9 @@ in
             "darwin-rebuild"
           ];
           filesystem = {
+            allowWrite = [
+              "."
+            ];
             denyRead = [
               ".env"
               ".env.local"
@@ -93,9 +97,6 @@ in
               ".env.test"
               "/etc/shadow"
               "/etc/gshadow"
-            ];
-            allowRead = [
-              "."
             ];
           };
           network = {
