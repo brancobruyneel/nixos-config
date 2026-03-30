@@ -193,7 +193,10 @@ let
     "mcp__claude_ai_Slack__slack_search_*"
 
     # Web access - all domains (curl/wget still gated by ask list)
+    # WebFetch(*) covers WebFetch tool calls; WebFetch(domain:*) covers
+    # non-sandbox network access checks (MCP servers, excluded commands)
     "WebFetch(*)"
+    "WebFetch(domain:*)"
     "WebSearch"
   ];
 
