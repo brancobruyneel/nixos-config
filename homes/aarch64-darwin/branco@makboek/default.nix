@@ -20,5 +20,14 @@
     keycastr
     mongodb-compass
     obsidian
+
+    # Databases and messaging
+    mongodb-atlas-cli
+    mongosh
+    mqttui
+    mqttx-cli
+    acli
+    glab
+    natscli
   ];
 }

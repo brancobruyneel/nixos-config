@@ -26,17 +26,8 @@ pkgs.mkShell {
     opentofu
     k3d
 
-    # Databases and messaging
-    mongodb-atlas-cli
-    mongosh
-    mqttui
-    mqttx-cli
-    acli
-    natscli
-
     # Tools
     bruno
     fioctl
-    glab
   ];
 }
