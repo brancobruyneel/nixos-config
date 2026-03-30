@@ -44,8 +44,9 @@ let
 
   # Standard profile additions - balanced permissions
   standardAllow = baseAllow ++ [
-    # Git staging
+    # Git operations
     "Bash(git add:*)"
+    "Bash(git commit:*)"
 
     # Safe nix commands (read-only / build)
     "Bash(nix build:*)"
@@ -122,7 +123,6 @@ let
   standardAsk = [
     # Potentially destructive git commands
     "Bash(git checkout:*)"
-    "Bash(git commit:*)"
     "Bash(git merge:*)"
     "Bash(git pull:*)"
     "Bash(git push:*)"
