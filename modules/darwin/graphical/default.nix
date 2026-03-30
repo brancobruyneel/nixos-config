@@ -21,7 +21,7 @@ in
       settings = {
         mode.main.binding = {
           alt-enter = "exec-and-forget open -n -a /Applications/Ghostty.app";
-          alt-w = "exec-and-forget open -n -a '/Users/branco/Applications/Home Manager Apps/Firefox.app'";
+          alt-w = "exec-and-forget open -n -a '/Users/branco/Applications/Home Manager Apps/Zen Browser (Beta).app'";
 
           alt-c = "close --quit-if-last-window";
 
