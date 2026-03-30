@@ -11,7 +11,10 @@
   config = lib.mkIf config.custom.ssh.enable {
     programs.ssh = {
       enable = true;
-      addKeysToAgent = "yes";
+      enableDefaultConfig = false;
+      matchBlocks."*" = {
+        addKeysToAgent = "yes";
+      };
     };
   };
 }
