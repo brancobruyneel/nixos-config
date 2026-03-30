@@ -7,6 +7,7 @@
     firefox.enable = true;
     zen.enable = true;
     git.includeWork = true;
+    ssh.enable = false;
   };
 
   home.packages = with pkgs; [
