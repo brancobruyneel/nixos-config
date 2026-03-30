@@ -75,6 +75,7 @@ in
           # (see https://github.com/anthropics/claude-code/issues/10524)
           excludedCommands = [
             # Go binaries; sandbox-exec blocks macOS Keychain for TLS cert verification
+            "go:*"
             "glab:*"
             "acli:*"
             # Accesses macOS Keychain for AWS credential storage
