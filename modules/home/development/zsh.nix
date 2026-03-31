@@ -23,6 +23,7 @@
         drb = "sudo darwin-rebuild switch --flake ~/.config/nix";
 
         clanker = "claude";
+        cw = "claude worktree";
 
         # git
         gd = "git diff";
