@@ -82,6 +82,8 @@ in
             "opentofu:*"
             "gh:*"
             "glab:*"
+            # Git needs network access for push/pull (SSH, credential helpers)
+            "git:*"
             "acli:*"
             # Accesses macOS Keychain for AWS credential storage
             "aws-vault:*"
