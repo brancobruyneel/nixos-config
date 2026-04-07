@@ -15,9 +15,6 @@ fi
 
 tmux new-session -d -c "$path" -s "$session" 2>/dev/null
 tmux send-keys -t "$session" nvim ENTER
-tmux split-window -h -c "$path" -t "$session"
-tmux send-keys -t "$session" "claude --worktree" ENTER
-tmux select-pane -t "$session":1.1
 
 # Inside tmux
 if [[ -n $TMUX ]]; then
