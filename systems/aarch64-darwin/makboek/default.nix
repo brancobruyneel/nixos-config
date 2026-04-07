@@ -45,7 +45,6 @@
       "raycast"
       "zoom"
       "spotify"
-      "unity-hub"
     ];
     onActivation.cleanup = "zap";
   };
