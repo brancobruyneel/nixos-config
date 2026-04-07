@@ -33,6 +33,7 @@ in
 
   options.custom.ai.claude-code = {
     enable = mkEnableOption "Claude Code CLI tool";
+    workPlugins = mkEnableOption "work-specific Claude Code plugins (ITP)";
     permissionProfile = mkOption {
       type = types.enum [
         "conservative"
@@ -57,6 +58,18 @@ in
 
       inherit (ai-tools.claudeCode) agents;
       inherit (ai-tools.claudeCode) commands;
+
+      plugins =
+        [
+          "${inputs.claude-plugins-official}/plugins/gopls-lsp"
+          "${inputs.claude-plugins-official}/plugins/typescript-lsp"
+        ]
+        ++ lib.optionals cfg.workPlugins [
+          inputs.claude-plugin-itp-general
+          inputs.claude-plugin-itp-engineering
+          inputs.claude-plugin-itp-engineering-backend
+          inputs.claude-plugin-itp-engineering-daikin
+        ];
 
       skillsDir = ai-tools.skillsDir;
       memory.source = ai-tools.baseInstructions;
@@ -126,33 +139,6 @@ in
         attribution = {
           commit = "";
           pr = "";
-        };
-
-        enabledPlugins = {
-          "gopls-lsp@claude-plugins-official" = true;
-          "typescript-lsp@claude-plugins-official" = true;
-          "daikin@daikin-onecta-ai-tooling-marketplace" = true;
-        };
-
-        extraKnownMarketplaces = {
-          daikin-onecta-ai-tooling-marketplace = {
-            source = {
-              source = "directory";
-              path = "/Users/branco/work/daikin-edc-electrics/projects/cloud-projects/onecta/enabling/daikin-onecta-ai-tooling";
-            };
-          };
-          claude-code-plugins = {
-            source = {
-              source = "github";
-              repo = "anthropics/claude-code";
-            };
-          };
-          claude-plugins-official = {
-            source = {
-              source = "git";
-              url = "https://github.com/anthropics/claude-plugins-official.git";
-            };
-          };
         };
 
         fileSuggestion = {

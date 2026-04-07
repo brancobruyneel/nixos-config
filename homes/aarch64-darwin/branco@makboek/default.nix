@@ -7,6 +7,7 @@
     firefox.enable = true;
     zen.enable = true;
     git.includeWork = true;
+    ai.claude-code.workPlugins = true;
     ssh.enable = false;
   };
 

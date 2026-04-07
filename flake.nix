@@ -23,6 +23,27 @@
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
+
+    claude-plugins-official = {
+      url = "github:anthropics/claude-plugins-official";
+      flake = false;
+    };
+    claude-plugin-itp-general = {
+      url = "git+ssh://git@git.inthepocket.org/inthepocket/skills/general.git";
+      flake = false;
+    };
+    claude-plugin-itp-engineering = {
+      url = "git+ssh://git@git.inthepocket.org/inthepocket/skills/engineering/engineering.git";
+      flake = false;
+    };
+    claude-plugin-itp-engineering-backend = {
+      url = "git+ssh://git@git.inthepocket.org/inthepocket/skills/engineering/backend.git";
+      flake = false;
+    };
+    claude-plugin-itp-engineering-daikin = {
+      url = "git+ssh://git@git.inthepocket.org/inthepocket/skills/engineering/daikin.git";
+      flake = false;
+    };
   };
   outputs =
     { self, nixpkgs, ... }@inputs:
