@@ -179,7 +179,9 @@ let
     "Skill(daikin:*)"
 
     # Datadog MCP - read/search operations
+    "mcp__plugin_daikin_datadog__aggregate_*"
     "mcp__plugin_daikin_datadog__analyze_datadog_logs"
+    "mcp__plugin_daikin_datadog__check_*"
     "mcp__plugin_daikin_datadog__get_*"
     "mcp__plugin_daikin_datadog__search_*"
 
@@ -191,6 +193,7 @@ let
     # Slack MCP - read/search operations
     "mcp__claude_ai_Slack__slack_read_*"
     "mcp__claude_ai_Slack__slack_search_*"
+
 
     # Web access - all domains (curl/wget still gated by ask list)
     # WebFetch(*) covers WebFetch tool calls; WebFetch(domain:*) covers
