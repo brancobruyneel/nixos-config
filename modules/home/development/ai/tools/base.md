@@ -20,7 +20,10 @@ Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`
 
 ## Nix-Managed Environment
 - All machines are managed through Nix (NixOS, nix-darwin, and home-manager)
-- **Never** install system-level packages with `brew`, `apt`, or similar. Use `nix run nixpkgs#<pkg>` or `nix shell nixpkgs#<pkg>` for one-off tools, or suggest adding them to the Nix config
+- **Never** install system-level packages with `brew`, `apt`, or similar
+- If a command is not found or a tool is not installed, run it with `nix run nixpkgs#<pkg> -- <args>` instead of asking the user to install it
+- For tools needed across multiple commands, use `nix shell nixpkgs#<pkg>` to make them available in the current shell
+- Only suggest adding a package to the Nix config if the user will need it permanently
 - Project-level package managers (`npm install`, `go mod`, etc.) are fine within their repos
 
 ## Claude Code is Managed Through Nix
