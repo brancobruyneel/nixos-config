@@ -179,19 +179,19 @@ let
     "Bash(acli config:*)"
 
     # Daikin skills
-    "Skill(daikin:*)"
+    "Skill(itp-engineering-daikin:*)"
 
     # Datadog MCP - read/search operations
-    "mcp__plugin_daikin_datadog__aggregate_*"
-    "mcp__plugin_daikin_datadog__analyze_datadog_logs"
-    "mcp__plugin_daikin_datadog__check_*"
-    "mcp__plugin_daikin_datadog__get_*"
-    "mcp__plugin_daikin_datadog__search_*"
+    "mcp__plugin_itp-engineering-daikin_datadog__aggregate_*"
+    "mcp__plugin_itp-engineering-daikin_datadog__analyze_datadog_logs"
+    "mcp__plugin_itp-engineering-daikin_datadog__check_*"
+    "mcp__plugin_itp-engineering-daikin_datadog__get_*"
+    "mcp__plugin_itp-engineering-daikin_datadog__search_*"
 
     # Incident.io MCP - read/list/get operations
-    "mcp__plugin_daikin_incidentio__get_*"
-    "mcp__plugin_daikin_incidentio__list_*"
-    "mcp__plugin_daikin_incidentio__search_*"
+    "mcp__plugin_itp-engineering-daikin_incidentio__get_*"
+    "mcp__plugin_itp-engineering-daikin_incidentio__list_*"
+    "mcp__plugin_itp-engineering-daikin_incidentio__search_*"
 
     # Web access - all domains (curl/wget still gated by ask list)
     # WebFetch(*) covers WebFetch tool calls; WebFetch(domain:*) covers
@@ -347,26 +347,26 @@ let
     "Bash(terraform import:*)"
 
     # Datadog MCP - mutating operations
-    "mcp__plugin_daikin_datadog__create_datadog_notebook"
-    "mcp__plugin_daikin_datadog__edit_datadog_notebook"
+    "mcp__plugin_itp-engineering-daikin_datadog__create_datadog_notebook"
+    "mcp__plugin_itp-engineering-daikin_datadog__edit_datadog_notebook"
 
     # Incident.io MCP - mutating operations
-    "mcp__plugin_daikin_incidentio__assign_incident_role"
-    "mcp__plugin_daikin_incidentio__close_incident"
-    "mcp__plugin_daikin_incidentio__create_alert_event"
-    "mcp__plugin_daikin_incidentio__create_alert_route"
-    "mcp__plugin_daikin_incidentio__create_custom_field"
-    "mcp__plugin_daikin_incidentio__create_custom_field_option"
-    "mcp__plugin_daikin_incidentio__create_incident"
-    "mcp__plugin_daikin_incidentio__create_incident_smart"
-    "mcp__plugin_daikin_incidentio__create_incident_update"
-    "mcp__plugin_daikin_incidentio__delete_custom_field"
-    "mcp__plugin_daikin_incidentio__delete_incident_update"
-    "mcp__plugin_daikin_incidentio__update_alert_route"
-    "mcp__plugin_daikin_incidentio__update_catalog_entry"
-    "mcp__plugin_daikin_incidentio__update_custom_field"
-    "mcp__plugin_daikin_incidentio__update_incident"
-    "mcp__plugin_daikin_incidentio__update_workflow"
+    "mcp__plugin_itp-engineering-daikin_incidentio__assign_incident_role"
+    "mcp__plugin_itp-engineering-daikin_incidentio__close_incident"
+    "mcp__plugin_itp-engineering-daikin_incidentio__create_alert_event"
+    "mcp__plugin_itp-engineering-daikin_incidentio__create_alert_route"
+    "mcp__plugin_itp-engineering-daikin_incidentio__create_custom_field"
+    "mcp__plugin_itp-engineering-daikin_incidentio__create_custom_field_option"
+    "mcp__plugin_itp-engineering-daikin_incidentio__create_incident"
+    "mcp__plugin_itp-engineering-daikin_incidentio__create_incident_smart"
+    "mcp__plugin_itp-engineering-daikin_incidentio__create_incident_update"
+    "mcp__plugin_itp-engineering-daikin_incidentio__delete_custom_field"
+    "mcp__plugin_itp-engineering-daikin_incidentio__delete_incident_update"
+    "mcp__plugin_itp-engineering-daikin_incidentio__update_alert_route"
+    "mcp__plugin_itp-engineering-daikin_incidentio__update_catalog_entry"
+    "mcp__plugin_itp-engineering-daikin_incidentio__update_custom_field"
+    "mcp__plugin_itp-engineering-daikin_incidentio__update_incident"
+    "mcp__plugin_itp-engineering-daikin_incidentio__update_workflow"
 
     # System control operations
     "Bash(systemctl disable:*)"
