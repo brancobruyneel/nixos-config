@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-terraform152,
   ...
 }:
 pkgs.mkShell {
@@ -23,6 +24,7 @@ pkgs.mkShell {
     awscli2
     aws-vault
     ssm-session-manager-plugin
+    pkgs-terraform152.terraform
     opentofu
     k3d
 

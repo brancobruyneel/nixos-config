@@ -2,6 +2,7 @@
   description = "Nix configuration";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-terraform152.url = "github:NixOS/nixpkgs/5a8650469a9f8a1958ff9373bd27fb8e54c4365d";
     nur.url = "github:nix-community/NUR";
     nur.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -73,10 +74,14 @@
       devShells = forAllSystems (system:
         let
           pkgs = import nixpkgs { inherit system; };
+          pkgs-terraform152 = import inputs.nixpkgs-terraform152 {
+            inherit system;
+            config.allowUnfree = true;
+          };
         in
         {
           go = import ./shells/go.nix { inherit pkgs; };
-          work = import ./shells/work.nix { inherit pkgs; };
+          work = import ./shells/work.nix { inherit pkgs pkgs-terraform152; };
           rust = import ./shells/rust.nix { inherit pkgs; };
         }
       );
