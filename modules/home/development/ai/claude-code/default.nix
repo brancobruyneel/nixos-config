@@ -82,6 +82,7 @@ in
 
         sandbox = {
           enabled = true;
+          failIfUnavailable = true;
           autoAllowBashIfSandboxed = true;
           allowUnsandboxedCommands = false;
           # Note: `:*` suffix is required to match commands with arguments
@@ -123,6 +124,12 @@ in
               ".env.test"
               "/etc/shadow"
               "/etc/gshadow"
+              "~/.aws/credentials"
+              "~/.ssh/id_*"
+              "~/.kube/config"
+              "~/.netrc"
+              "~/.config/gh/hosts.yml"
+              "~/.docker/config.json"
             ];
           };
           network = {
