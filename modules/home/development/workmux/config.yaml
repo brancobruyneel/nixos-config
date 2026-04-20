@@ -1,0 +1,20 @@
+agent: claude
+merge_strategy: rebase
+nerdfont: true
+mode: window
+
+panes:
+  - command: <agent>
+    focus: true
+
+status_icons:
+  working: "#[fg=#e5c07b]#[fg=default]"
+  waiting: "#[fg=#61afef]#[fg=default]"
+  done: "#[fg=#98c379]󰄲#[fg=default]"
+
+sidebar:
+  width: 35
+  layout: compact
+
+dashboard:
+  preview_size: 50

@@ -62,6 +62,9 @@ let
     "Bash(nix run nixpkgs#:*)"
     "Bash(nix shell nixpkgs#:*)"
 
+    # workmux agent management
+    "Bash(workmux:*)"
+
     # Directory creation and file utilities
     "Bash(mkdir:*)"
     "Bash(chmod:*)"

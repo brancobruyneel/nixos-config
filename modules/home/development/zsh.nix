@@ -23,7 +23,11 @@
         drb = "sudo darwin-rebuild switch --flake ~/.config/nix";
 
         clanker = "claude";
-        cw = "claude worktree";
+        wm = "workmux";
+        wma = "workmux add";
+        wmm = "workmux merge";
+        wml = "workmux list";
+        wmr = "workmux remove";
 
         # git
         gd = "git diff";

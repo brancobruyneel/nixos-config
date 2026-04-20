@@ -73,6 +73,12 @@
 
         bind b set-option status
 
+        # workmux: agent management
+        bind C-d display-popup -h 80% -w 90% -E "workmux dashboard"
+        bind C-t run-shell "workmux sidebar"
+        bind C-n run-shell "workmux last-done"
+        bind Tab run-shell "workmux last-agent"
+
         # Image preview
         set -g allow-passthrough on
         set -ga update-environment TERM

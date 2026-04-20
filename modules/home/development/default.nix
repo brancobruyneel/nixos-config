@@ -13,6 +13,7 @@
     ./tmux
     ./ghostty.nix
     ./ai
+    ./workmux
   ];
 
   options.custom.development = {
@@ -32,6 +33,7 @@
       ghostty.enable = lib.mkDefault true;
       neovim.enable = lib.mkDefault true;
       ai.enable = lib.mkDefault true;
+      workmux.enable = lib.mkDefault true;
     };
   };
 }
