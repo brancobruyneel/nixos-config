@@ -71,8 +71,8 @@ in
           inputs.claude-plugin-itp-engineering-daikin
         ];
 
-      skillsDir = ai-tools.skillsDir;
-      memory.source = ai-tools.baseInstructions;
+      skills = ai-tools.skillsDir;
+      context = ai-tools.baseInstructions;
 
       settings = {
         editorMode = "vim";
