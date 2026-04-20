@@ -193,11 +193,6 @@ let
     "mcp__plugin_daikin_incidentio__list_*"
     "mcp__plugin_daikin_incidentio__search_*"
 
-    # Slack MCP - read/search operations
-    "mcp__claude_ai_Slack__slack_read_*"
-    "mcp__claude_ai_Slack__slack_search_*"
-
-
     # Web access - all domains (curl/wget still gated by ask list)
     # WebFetch(*) covers WebFetch tool calls; WebFetch(domain:*) covers
     # non-sandbox network access checks (MCP servers, excluded commands)
@@ -372,13 +367,6 @@ let
     "mcp__plugin_daikin_incidentio__update_custom_field"
     "mcp__plugin_daikin_incidentio__update_incident"
     "mcp__plugin_daikin_incidentio__update_workflow"
-
-    # Slack MCP - mutating operations
-    "mcp__claude_ai_Slack__slack_create_canvas"
-    "mcp__claude_ai_Slack__slack_schedule_message"
-    "mcp__claude_ai_Slack__slack_send_message"
-    "mcp__claude_ai_Slack__slack_send_message_draft"
-    "mcp__claude_ai_Slack__slack_update_canvas"
 
     # System control operations
     "Bash(systemctl disable:*)"
